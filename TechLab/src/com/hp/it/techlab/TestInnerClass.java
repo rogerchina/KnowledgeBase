@@ -17,14 +17,9 @@ public class TestInnerClass {
 		Cat cat = new Cat("xixi");
 		cat.sayItselfName();
 	}
-	
-	public static void method1(){
-		TestInnerClass tic = new TestInnerClass();
-		TestInnerClass.Cat cat = tic.new Cat("mimi");
-		cat.sayItselfName();
-	}
-	
-	private class Cat{
+
+	//inner class
+	class Cat{
 		private String name;
 		
 		public Cat(String name){
