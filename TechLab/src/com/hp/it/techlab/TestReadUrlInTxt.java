@@ -13,19 +13,26 @@ import java.net.URL;
 public class TestReadUrlInTxt {
 
 	public void readFile(String filePath) {
+		BufferedReader in = null;
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(filePath));
+			in = new BufferedReader(new FileReader(filePath));
 			String line = null;
 			while ((line = in.readLine()) != null) {
 				System.out.println(line);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally{
+			try {
+				if(in != null)
+					in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public void readFile2(String filePath) {
-
 		BufferedReader br;
 		String read = "";
 		try {
