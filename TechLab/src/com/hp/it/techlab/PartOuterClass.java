@@ -1,22 +1,18 @@
 package com.hp.it.techlab;
 
-public class PartOuterClass {
+public abstract class PartOuterClass {
 	private int i = 10;
-	public int addValue(){
-		final String s = "innerclass";
-		class methodInnerClass {
-			public void getValue(){
-				i++;
-				System.out.println(s);
-			}
-		}
-		methodInnerClass mic = new methodInnerClass();
-		mic.getValue();
-		return i;
-	}
-	
+	public abstract int addValue();
+
 	public static void main(String[] args){
-		PartOuterClass outer = new PartOuterClass();
-		System.out.println(outer.addValue());
+		System.out.println(new PartOuterClass(){
+			int j;
+			@Override
+			public int addValue() {
+				j++;
+				return 0;
+			}
+			
+		});
 	}
 }
