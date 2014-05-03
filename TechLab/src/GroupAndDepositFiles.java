@@ -7,55 +7,65 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class GroupAndDepositFiles {
-	private static int folderNum = 200;
-	private static int fileNum = 2000;
-	
-	public static void main(String[] args)  throws Exception{
-		String path = /*"C:\\QDP Related Document\\TestFiles\\hv-largefile";// */"C:\\Users\\zyonglia\\Desktop\\GenerateTest\\GenerateTest\\out";
-		
-		File[] fileArray = returnFileList(path);
-		groupFile(fileArray);
-		
+	//file count in every folder
+	private static int fileCount = 4;
+
+	public static void main(String [] args){
+		String srcPath = "D:\\qdpFiles\\pi";
+		String desPath = "D:\\qdpFiles\\pi";
+		File[] fileArray = returnFileArray(srcPath);
+		groupFiles(fileArray, desPath);
+
+		//output the files info
+		/*
+		for(int i=0;i<fileArray.length;i++){
+			System.out.println(fileArray[i].isFile() + "\t" + fileArray[i].getName());
+		} */
 	}
-	
-	private static File[] returnFileList(String path){
+
+	public static File[] returnFileArray(String path){
 		return new File(path).listFiles();
 	}
-	
-	private static void groupFile(File[] fileArray) throws Exception{
-		int index = 0;  // file count
-		int number = 0; // folder index
-		for(int i=0;i<fileArray.length;i++){
-			File ff = null;
-			
-			if(index % fileNum == 0){
-				ff = new File("C:\\40WAN\\" + ((index/fileNum)+1));
-				number = (index/fileNum)+1;
-				System.out.println("--------current folder is " + number + "------------");
-				if(!ff.exists())
-					ff.mkdir();
+
+	public static void groupFiles(File[] files,String path){
+		int folderIndex = 0;
+		for(int i=0;i<files.length;i++){
+			File f = null;
+			if(i%fileCount == 0){
+				folderIndex = (i/fileCount)+1;
+				f = new File(path + "\\" + folderIndex);
+				if(!f.exists())
+					f.mkdir();
 			}
-			
-			index++;
-			//System.out.println("C:\\40WAN\\" + number + "\\" + fileArray[i].getName());
-			copyFile(fileArray[i], new File("C:\\40WAN\\" + number + "\\" + fileArray[i].getName()));
+
+			copyFile(files[i],new File(path + "\\" + folderIndex + "\\" + files[i].getName()));
 		}
 	}
-	
-	private static void copyFile(File src,File des) throws IOException{
-		InputStream in = new FileInputStream(src);
-		OutputStream out = new FileOutputStream(des);
+
+	public static void copyFile(File src, File des){
+		InputStream in = null;
+		OutputStream out = null;
+		try{
+			in = new FileInputStream(src);
+			out = new FileOutputStream(des);
 		
-		if(!des.exists())
-			des.createNewFile();
-		
-		byte[] buff = new byte[1024];
-		int len;
-		while((len=in.read(buff)) != -1){
-			out.write(buff, 0, len);
+			byte[] buff = new byte[1024];
+			int len;
+			while((len=in.read(buff)) != -1){
+				out.write(buff,0,len);
+			}
+		} catch(FileNotFoundException e){
+			e.printStackTrace();
+		} catch(IOException e){
+			e.printStackTrace();
+		} finally{
+			try{
+				in.close();
+				out.close();
+			} catch(IOException e){
+				e.printStackTrace();
+			}
 		}
-		
-		in.close();
-		out.close();
 	}
+
 }
