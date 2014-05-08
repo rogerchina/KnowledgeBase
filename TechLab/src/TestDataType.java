@@ -1,4 +1,6 @@
+import junit.framework.TestCase;
 
-public class TestDataType{
+
+public class TestDataType extends TestCase{
 
 }

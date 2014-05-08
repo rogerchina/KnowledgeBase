@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="src_ethz/ssh2/|src_ethz.ssh2/|src/" kind="src" path=""/>
-	<classpathentry kind="src" path="src_ethz.ssh2"/>
+	<classpathentry excluding="src_ethz/ssh2/|libs/|lib/|src/|src_ethz.ssh2/" kind="src" path=""/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="src_ethz.ssh2"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/junit-4.10.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
