@@ -10,9 +10,23 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.11</version>
+				<version>4.10</version>
 			</dependency>
 			
         </dependencies>
-    </dependencyManagement>
+  </dependencyManagement>
+  
+  <repositories>
+		<repository>
+			<id>central</id>
+			<name>medavis Public CN Maven Repository</name>
+			<url>https://192.168.230.72:8087/nexus/content/groups/public</url>
+		</repository>
+
+		<repository>
+			<id>medavis</id>
+			<name>medavis Public Maven Repository</name>
+			<url>http://medavis03.medavis.local:8081/nexus/content/groups/public</url>
+		</repository>
+  </repositories>
 </project>
