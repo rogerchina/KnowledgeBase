@@ -3,8 +3,10 @@ package com.debuglife.codelabs;
 import java.util.ResourceBundle;
 
 /**
- * read the resource file to get the string of dynamically generated class,
+ * 1. read the resource file to get the string of dynamically generated class,
  * and create a new instance of class instead of using new XXX() method
+ * 
+ * 2. design the arch for java framework
  * @author roger
  *
  */
