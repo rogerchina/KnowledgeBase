@@ -14,10 +14,21 @@ public class TestPolymorphism {
     private static String resourceBundleBaseName = "";
     private static final String TEST2 = "Test2";
     
+    private static int i = 1;
+    private static int j = 2;;
+    
+    
     
     public static void main(String[] args) throws Exception{
         TestPolymorphism tp = new TestPolymorphism();
-        tp.invoke();
+        //tp.invoke();
+        
+        Calculator c1 = new C1();
+        Calculator c2 = new C2();
+        tp.cal(c1);
+        tp.cal(c2);
+        
+        
     }
     
     public TestPolymorphism() {
@@ -27,9 +38,13 @@ public class TestPolymorphism {
     private void invoke() throws Exception{
         String className = ResourceBundle.getBundle(resourceBundleBaseName).getString(TEST2);
         Test1 testDemo = (Test1)((ClassLoader.getSystemClassLoader().loadClass(className)).newInstance());
-        testDemo.start();
+        //testDemo.start();
         System.out.println("********************************");
         testDemo.start1();
+    }
+    
+    private void cal(Calculator c){
+    	c.calculate(i, j);
     }
 }
 
@@ -86,4 +101,27 @@ class Test2 extends Test1{
     public void afterAction() {
         System.out.println("it is executing in the afterAction() of class Test2...");
     }
+}
+
+
+interface Calculator{
+	void calculate(int i, int j);
+}
+
+class C1 implements Calculator{
+
+	@Override
+	public void calculate(int i, int j) {
+		System.out.println(i + j);
+	}
+	
+}
+
+class C2 implements Calculator{
+
+	@Override
+	public void calculate(int i, int j) {
+		System.out.println(i*j);
+	}
+	
 }
