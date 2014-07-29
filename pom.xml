@@ -5,7 +5,7 @@
 
 	<groupId>com.debuglife</groupId>
 	<artifactId>codelabs-parent</artifactId>
-	<packaging>war</packaging>
+	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Code Labs Vitural Project For Study ${project.version}</name>
 

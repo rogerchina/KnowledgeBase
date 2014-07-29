@@ -4,46 +4,24 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.debuglife</groupId>
-	<artifactId>codelabs</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>codelabs-demo</artifactId>
+	<packaging>pom</packaging>
+	<name>Code Labs Demo ${project.version}</name>
 
-<!-- 
 	<parent>
-		<groupId>de.medavis</groupId>
-		<artifactId>gateway4med</artifactId>
-		<version>2.3.0.1-SNAPSHOT</version>
+		<groupId>com.debuglife</groupId>
+		<artifactId>codelabs-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
- -->
-
-<!-- 
-	<properties>
-    	<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
-    	<build.date>${maven.build.timestamp}</build.date>
-	</properties>
--->
-
-<!-- 
-	<build>
-		<resources>
-			<resource>
-				<filtering>true</filtering>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.properties</include>
-				</includes>
-			</resource>
-		</resources>
-	</build>
- -->
- 
-	<dependencies>
 	
-<!--
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-		</dependency>
--->
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <vaadin.version>7.1.0</vaadin.version>
+        <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
+    </properties>
+
+
+	<dependencies>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -103,117 +81,11 @@
 			<version>0.9.8</version>
 		</dependency>
 		
-		
-		
-<!-- 
-		<dependency>
-			<groupId>de.medavis</groupId>
-			<artifactId>medavis-ui-framework</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>de.medavis</groupId>
-					<artifactId>framework-widgetset</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>de.medavis</groupId>
-			<artifactId>admin-app-ejb</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.medavis</groupId>
-			<artifactId>admin-app-ejb-client</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>de.medavis</groupId>
-			<artifactId>gateway4med-ejb</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.medavis</groupId>
-			<artifactId>gateway4med-ejb-client</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.medavis</groupId>
-			<artifactId>gateway4med-interface</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.medavis</groupId>
-			<artifactId>medavis-texture-theme</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.logging</groupId>
-			<artifactId>jboss-logging</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.opensaml</groupId>
-			<artifactId>opensaml</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.perf4j</groupId>
-			<artifactId>perf4j</artifactId>
-			<classifier>log4jonly</classifier>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>jaas-modules</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
+			<version>2.3</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache</groupId>
-			<artifactId>xmlsec</artifactId>
-			<version>${maven.apache.xmlsec.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>de.medavis</groupId>
-			<artifactId>logging</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.modelmapper</groupId>
-			<artifactId>modelmapper</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<classifier>jdk15</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>de.medavis</groupId>
-			<artifactId>gateway4med-widgetset</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>de.medavis</groupId>
-			<artifactId>gateway4med-theme</artifactId>
-			<version>${project.version}</version>
-		</dependency>
- -->
 	</dependencies>
+
 </project>
