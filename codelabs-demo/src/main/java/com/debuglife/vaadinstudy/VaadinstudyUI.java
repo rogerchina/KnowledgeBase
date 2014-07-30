@@ -7,12 +7,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
 import javax.servlet.annotation.WebServlet;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
@@ -38,15 +42,18 @@ import com.vaadin.shared.Position;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.shared.ui.combobox.FilteringMode;
 import com.vaadin.shared.ui.datefield.Resolution;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.AbstractSelect.NewItemHandler;
 import com.vaadin.ui.AbstractTextField;
+import com.vaadin.ui.Accordion;
 import com.vaadin.ui.BrowserFrame;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.Embedded;
 import com.vaadin.ui.Flash;
 import com.vaadin.ui.FormLayout;
@@ -55,6 +62,8 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.InlineDateField;
+import com.vaadin.ui.JavaScript;
+import com.vaadin.ui.JavaScriptFunction;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.ListSelect;
@@ -103,14 +112,92 @@ public class VaadinstudyUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-	    System.out.println("the program reached to VaadinStudyUI.init()");
-		initPage();
+	    initPageWholeLayout();
+	    initPage();
 	}
 	
-	VerticalLayout vlayout = new VerticalLayout();
-	HorizontalLayout hlayout = new HorizontalLayout();
-	final TextField tf = new TextField();
-	final Table table = new Table();
+	private VerticalSplitPanel topLevelLayout;
+	private HorizontalLayout headerLayout;
+	private HorizontalSplitPanel bottomLayout;
+	private Panel accordionPanel;
+	private Panel rightPanel;
+	private Accordion accordion;
+	private VerticalLayout rightLayout;
+	
+    VerticalLayout vlayout = new VerticalLayout();
+    HorizontalLayout hlayout = new HorizontalLayout();
+    final TextField tf = new TextField();
+    final Table table = new Table();
+	
+	private void initPageWholeLayout(){
+	    topLevelLayout = new VerticalSplitPanel();
+	    topLevelLayout.setSplitPosition(5, Unit.PERCENTAGE);
+	    topLevelLayout.setLocked(true);
+	    topLevelLayout.setSizeFull();
+	    
+	    headerLayout = new HorizontalLayout();
+	    headerLayout.setMargin(new MarginInfo(true,true,false,true));
+	    Label headerLabel = new Label("Vaadin Code Labs");
+	    headerLabel.setWidth("100%");
+	    headerLabel.addStyleName("v-label-mystyle");
+	    headerLayout.addComponent(headerLabel);
+	    
+	    bottomLayout = new HorizontalSplitPanel();
+	    bottomLayout.setSplitPosition(20, Unit.PERCENTAGE);
+	    bottomLayout.setLocked(true);
+	    
+	    topLevelLayout.setFirstComponent(headerLayout);
+	    topLevelLayout.setSecondComponent(bottomLayout);
+	    
+        accordionPanel = new Panel();
+        accordionPanel.setWidth("300px");
+        accordionPanel.setHeight("300px");
+        accordionPanel.setSizeFull();
+        
+        rightPanel = new Panel();
+        accordion = buildAccordion();
+        rightLayout = new VerticalLayout();
+        rightLayout.addComponent(vlayout);
+        accordionPanel.setContent(accordion);
+        rightPanel.setContent(rightLayout);
+    
+        bottomLayout.setFirstComponent(accordionPanel);
+        bottomLayout.setSecondComponent(rightPanel);
+        
+	    this.setContent(topLevelLayout);
+	}
+	
+    private Accordion buildAccordion(){
+        accordion = new Accordion();
+        accordion.setHeight(100.0f, Unit.PERCENTAGE);
+        
+        Map<String,List<Object>> map = new HashMap<>();
+        List<Object> list = new ArrayList<>();
+        // single tab
+        list.add(new Link("hahahahahaha1", null));
+        list.add(new Link("hahahahahaha2", null));
+        list.add(new Link("hahahahahaha3", null));
+        map.put("SingleComponent", list);
+        
+        // container tab
+        List<Object> list1 = new ArrayList<>();
+        list1.add(new Link("hahahahahaha1", null));
+        list1.add(new Link("hahahahahaha2", null));
+        list1.add(new Link("hahahahahaha3", null));
+        map.put("Container", list1);
+        
+        VerticalLayout vlayout = null;
+        for(String str : map.keySet()){
+            vlayout = new VerticalLayout();
+            vlayout.setMargin(new MarginInfo(true,true,false,true));
+            for(Object o: map.get(str)){
+                vlayout.addComponent((Component)o);
+            }
+            accordion.addTab(vlayout, str);
+        }
+        
+        return accordion;
+    }
 	
 	private void initPage(){
 		// Set the default locale of the UI
@@ -125,7 +212,8 @@ public class VaadinstudyUI extends UI {
 		//vlayout.setSizeFull();
 		vlayout.setMargin(true); // Enable layout margins. Affects all four sides of the layout
 		vlayout.setSpacing(true);
-		setContent(vlayout);
+		
+		//setContent(vlayout);
 		
 		
 		Label label1 = new Label(baseDir.getAbsolutePath());
@@ -305,6 +393,10 @@ public class VaadinstudyUI extends UI {
 		// HorizontalSplitPanel
 		initLabel("HorizontalSplitPanel");
 		initHorizontalSpilitPanel();
+		
+		// JavaScript Interaciton
+		initLabel("JavaScript Interaciton");
+		initJavaScript();
 		
 		initSpace();
 	}
@@ -1101,8 +1193,8 @@ public class VaadinstudyUI extends UI {
 		hots.addItem("Coffee", null,null);
 		
 		MenuItem meats = menubar.addItem("ProtectedAnimals", null, mycommand);
-		meats.addItem("Monkey", new ThemeResource("../sampler/icons/tea-16px.png"), mycommand);
-		meats.addItem("Dragon", new ThemeResource("../sampler/icons/coffee-16px.png"), mycommand);
+		meats.addItem("Monkey", new ThemeResource("../sampler/icons/vaadin-logo.png"), mycommand);
+		meats.addItem("Dragon", new ThemeResource("../sampler/icons/vaadin-logo.png"), mycommand);
 		
 		vlayout.addComponent(menubar);
 		
@@ -1463,7 +1555,7 @@ public class VaadinstudyUI extends UI {
 		vl.addComponent(new Button("all right"));
 		
 		window.center();
-		addWindow(window);
+		//addWindow(window);
 		
 		// method 2
 		class MySub extends Window{
@@ -1614,6 +1706,30 @@ public class VaadinstudyUI extends UI {
 		
 		initSpace();
 	}
+	
+	private void initJavaScript(){
+	    //Page.getCurrent().getJavaScript().execute("alert ('Hello')");
+	    //JavaScript.getCurrent().execute("alert ('Hello')");
+	    
+	    JavaScript.getCurrent().addFunction("com.debuglife.vaadinstudy.myfunc", new JavaScriptFunction(){
+            @Override
+            public void call(JSONArray arguments) throws JSONException {
+                try {
+                    String message = arguments.getString(0);
+                    int value = arguments.getInt(1);
+                    Notification.show("Message: " + message + ", value: " + value, Type.HUMANIZED_MESSAGE);
+                } catch(Exception e) {
+                    Notification.show("Error: " + e.getMessage(), Type.HUMANIZED_MESSAGE);
+                }
+                
+            }
+	    });
+	    Link link = new Link("Send Message", new ExternalResource("javascript:com.debuglife.vaadinstudy.myfunc(prompt('Message'), 42)"));
+	    
+	    //vlayout.addComponent(link);
+	    initSpace();
+	}
+	
 	
 }
 
