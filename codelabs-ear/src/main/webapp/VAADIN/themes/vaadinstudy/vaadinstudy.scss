@@ -1,0 +1,34 @@
+/* Import the reindeer theme.*/
+/* This only allows us to use the mixins defined in it and does not add any styles by itself. */
+@import "../reindeer/reindeer.scss";
+
+/* This contains all of your theme.*/
+/* If somebody wants to extend the theme she will include this mixin. */
+@mixin vaadinstudy {
+  /* Include all the styles from the reindeer theme */
+  @include reindeer;
+
+  /* Insert your theme rules here */
+  
+	.v-label-mystyle{
+		font-style: italic; 
+		font-wight: bold;
+		font-size: 20px;
+		margin-bottom:1px;
+		background-color:grey;
+	}
+	
+	.v-label-header{
+		font-style: italic; 
+		font-wight: bold;
+		font-size: 25px;
+		margin-bottom:1px;
+	}
+	
+	.v-horizontal-layout{
+		background-color:yellow;
+		border-style:solid;
+	}
+	
+	
+}
