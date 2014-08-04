@@ -12,7 +12,7 @@
 	<modules>
 		<module>codelabs-demo</module>
 		<module>codelabs-addon</module>
-		<!-- <module>codelabs-ear</module> -->
+		<module>codelabs-ear</module>
 	</modules>
 	
 	
