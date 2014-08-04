@@ -42,7 +42,6 @@ import com.vaadin.shared.Position;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.shared.ui.combobox.FilteringMode;
 import com.vaadin.shared.ui.datefield.Resolution;
-import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.AbstractSelect.NewItemHandler;
 import com.vaadin.ui.AbstractTextField;
@@ -116,8 +115,9 @@ public class VaadinstudyUI extends UI {
 	    initPage();
 	}
 	
+	// component of page whole layout 
 	private VerticalSplitPanel topLevelLayout;
-	private HorizontalLayout headerLayout;
+	private VerticalLayout headerLayout;
 	private HorizontalSplitPanel bottomLayout;
 	private Panel accordionPanel;
 	private Panel rightPanel;
@@ -130,18 +130,22 @@ public class VaadinstudyUI extends UI {
     final Table table = new Table();
 	
 	private void initPageWholeLayout(){
+	    // 1. top most layout
 	    topLevelLayout = new VerticalSplitPanel();
 	    topLevelLayout.setSplitPosition(5, Unit.PERCENTAGE);
 	    topLevelLayout.setLocked(true);
 	    topLevelLayout.setSizeFull();
 	    
-	    headerLayout = new HorizontalLayout();
+	    // 2. header layout
+	    headerLayout = new VerticalLayout();
+	    headerLayout.setSizeFull();
 	    headerLayout.setMargin(new MarginInfo(true,true,false,true));
 	    Label headerLabel = new Label("Vaadin Code Labs");
-	    headerLabel.setWidth("100%");
-	    headerLabel.addStyleName("v-label-mystyle");
+	    headerLabel.setSizeFull();
+	    headerLabel.addStyleName("v-label-header");
 	    headerLayout.addComponent(headerLabel);
 	    
+	    // 3. bottom layout
 	    bottomLayout = new HorizontalSplitPanel();
 	    bottomLayout.setSplitPosition(20, Unit.PERCENTAGE);
 	    bottomLayout.setLocked(true);
@@ -167,6 +171,7 @@ public class VaadinstudyUI extends UI {
 	    this.setContent(topLevelLayout);
 	}
 	
+	// build the accordion in the left layout
     private Accordion buildAccordion(){
         accordion = new Accordion();
         accordion.setHeight(100.0f, Unit.PERCENTAGE);
@@ -185,6 +190,13 @@ public class VaadinstudyUI extends UI {
         list1.add(new Link("hahahahahaha2", null));
         list1.add(new Link("hahahahahaha3", null));
         map.put("Container", list1);
+        
+        // javascript tab
+        List<Object> list2 = new ArrayList<>();
+        list1.add(new Link("hahahahahaha1", null));
+        list1.add(new Link("hahahahahaha2", null));
+        list1.add(new Link("hahahahahaha3", null));
+        map.put("JavaScript", list2);
         
         VerticalLayout vlayout = null;
         for(String str : map.keySet()){
@@ -398,6 +410,9 @@ public class VaadinstudyUI extends UI {
 		initLabel("JavaScript Interaciton");
 		initJavaScript();
 		
+		initLabel("Java Script Component");
+		initJavaScriptComponent();
+		
 		initSpace();
 	}
 	
@@ -407,7 +422,6 @@ public class VaadinstudyUI extends UI {
 	 */
 	private void initLabel(String typeName){
 		Label label = new Label(typeName);
-		label.setWidth("50%");
 		label.addStyleName("v-label-mystyle");
 		vlayout.addComponent(label);
 	}
@@ -1725,12 +1739,20 @@ public class VaadinstudyUI extends UI {
             }
 	    });
 	    Link link = new Link("Send Message", new ExternalResource("javascript:com.debuglife.vaadinstudy.myfunc(prompt('Message'), 42)"));
+	    Link link1 = new Link("Chart", new ExternalResource("http://s1.bdstatic.com/r/www/cache/ecom/esl/1-6-10/esl.js"));
 	    
-	    //vlayout.addComponent(link);
+	    
+	    vlayout.addComponent(link);
 	    initSpace();
 	}
 	
-	
+	private void initJavaScriptComponent(){
+	    MyComponent mycom = new MyComponent();
+	    mycom.setSizeFull();
+	    vlayout.addComponent(mycom);
+	    
+	    initSpace();
+	}
 }
 
 
