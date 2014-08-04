@@ -132,7 +132,7 @@ public class VaadinstudyUI extends UI {
 	private void initPageWholeLayout(){
 	    // 1. top most layout
 	    topLevelLayout = new VerticalSplitPanel();
-	    topLevelLayout.setSplitPosition(5, Unit.PERCENTAGE);
+	    topLevelLayout.setSplitPosition(8, Unit.PERCENTAGE);
 	    topLevelLayout.setLocked(true);
 	    topLevelLayout.setSizeFull();
 	    
