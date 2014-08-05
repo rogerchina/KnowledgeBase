@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,10 +19,12 @@ import javax.servlet.annotation.WebServlet;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import com.debuglife.vaadinstudy.echart.MyComponent;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.data.Item;
+import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
@@ -37,7 +40,6 @@ import com.vaadin.server.UserError;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.Position;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.shared.ui.combobox.FilteringMode;
@@ -125,10 +127,7 @@ public class VaadinstudyUI extends UI {
 	private VerticalLayout rightLayout;
 	
     VerticalLayout vlayout = new VerticalLayout();
-    HorizontalLayout hlayout = new HorizontalLayout();
-    final TextField tf = new TextField();
-    final Table table = new Table();
-	
+
 	private void initPageWholeLayout(){
 	    // 1. top most layout
 	    topLevelLayout = new VerticalSplitPanel();
@@ -216,18 +215,162 @@ public class VaadinstudyUI extends UI {
 		UI.getCurrent().setLocale(new Locale("en"));
 		// Set the page title (window or tab caption)
 		Page.getCurrent().setTitle("VaadinStudy");
-		//
-		VaadinSession.getCurrent().setAttribute("hello", "haha");
-		// Access the HTTP service parameter
-		File baseDir =  VaadinService.getCurrent().getBaseDirectory();
-		
-		//vlayout.setSizeFull();
-		vlayout.setMargin(true); // Enable layout margins. Affects all four sides of the layout
+		// Enable layout margins. Affects all four sides of the layout
+		vlayout.setMargin(true); 
 		vlayout.setSpacing(true);
 		
-		//setContent(vlayout);
-		
-		
+	    // JavaScript Component
+        initLabel("Java Script Component");
+        initJavaScriptComponent();
+        
+        // JavaScript Interaciton
+        initLabel("JavaScript Interaciton");
+        initJavaScript();
+        
+        // HorizontalSplitPanel
+        initLabel("HorizontalSplitPanel");
+        initHorizontalSpilitPanel();
+        
+        // Sub Window
+        initLabel("Sub Window");
+        initSubWindow();
+        
+        // Panel
+        initLabel("Panel");
+        initPanel();
+        
+        // FormLayout
+        initLabel("FormLayout");
+        initFormlayout();
+        
+        // GridLayout
+        initLabel("GridLayout");
+        initGridLayout();
+        
+        // SizeContainedComponents
+        initLabel("SizeContainedComponents");
+        initSizeContainedComponents();
+        
+        // CC1
+        initLabel("CompositComponent1");
+        initCompositeComponent1();
+
+        // ProgressBar
+        initLabel("ProgressBar");
+        initProgressBar();
+        
+        // Upload 
+        initLabel("Upload by myself");
+        initUploadTest();
+        
+        // Common Embedded Object
+        initLabel("Embedded");
+        initEmbedded();
+        
+        // BrowserFrame
+        initLabel("BrowserFrame");
+        initBrowserFrame();
+        
+        // Flash
+        initLabel("Flash");
+        initAdobeFlashGraphics();
+        
+        // Image
+        initLabel("Image");
+        initImage();
+        
+        // MenuBar
+        initLabel("MenuBar");
+        initMenuBar();
+        
+        // Tree
+        initLabel("Tree");
+        initTree();
+        
+        // Notification
+        initLabel("Notification");
+        initNotification();
+        
+        // Icon
+        initLabel("Icon");
+        initIcon();
+        
+        // Link
+        initLabel("Link");
+        initLink();
+        
+        // Upload file
+        initLabel("Upload file");
+        initUploadFile();
+        
+        // Slider
+        initLabel("Slider");
+        initSlider();
+        
+        // CheckBox
+        initLabel("CheckBox");
+        initCheckBox();
+        
+        // OptionGroup
+        initLabel("OptionGroup");
+        initOptionGroup();
+        
+        // ListBuilder
+        initLabel("ListBuilder");
+        initListBuilder();
+        
+        // ListSelect
+        initLabel("ListSelect");
+        initListSelect();
+        
+        // DropDownMenu
+        initLabel("DropDownMenu");
+        initDropDownMenu();
+        
+        // ComboBox
+        initLabel("ComboBox");
+        initComboBox();
+        
+        // DatePicker
+        initLabel("DatePicker");
+        initDatePicker();
+        
+        // PopupDateField
+        initLabel("PopupDateField");
+        initDateField();
+        
+        // RichText
+        initLabel("RichText");
+        initRichText();
+        
+        // PasswordField
+        initLabel("PasswordField");
+        PasswordField passwdField = new PasswordField();
+        initTextField(passwdField);
+        
+        // TextField
+        initLabel("TextField");
+        TextField textField = new TextField();
+        initTextField(textField);
+
+        // TextArea
+        initLabel("TextArea");
+        initMultiRowArea();
+        
+        // Table
+        initLabel("Table");
+        initTable();
+        
+		initSpace();
+	}
+
+    private void initTable() {
+        // Access the HTTP service parameter
+        File baseDir =  VaadinService.getCurrent().getBaseDirectory();
+        HorizontalLayout hlayout = new HorizontalLayout();
+	    final TextField tf = new TextField();
+	    final Table table = new Table();
+	    
 		Label label1 = new Label(baseDir.getAbsolutePath());
 		vlayout.addComponent(label1);
 		
@@ -275,146 +418,7 @@ public class VaadinstudyUI extends UI {
 		});
 		
 		initSpace();
-		
-		// TextArea
-		initLabel("TextArea");
-		initMultiRowArea();
-		
-		// TextField
-		initLabel("TextField");
-		TextField textField = new TextField();
-		initTextField(textField);
-		
-		// PasswordField
-		initLabel("PasswordField");
-		PasswordField passwdField = new PasswordField();
-		initTextField(passwdField);
-		
-		// RichText
-		initLabel("RichText");
-		initRichText();
-		
-		// PopupDateField
-		initLabel("PopupDateField");
-		initDateField();
-		
-		// DatePicker
-		initLabel("DatePicker");
-		initDatePicker();
-		
-		// ComboBox
-		initLabel("ComboBox");
-		initComboBox();
-		
-		// DropDownMenu
-		initLabel("DropDownMenu");
-		initDropDownMenu();
-		
-		// ListSelect
-		initLabel("ListSelect");
-		initListSelect();
-		
-		// ListBuilder
-		initLabel("ListBuilder");
-		initListBuilder();
-		
-		// OptionGroup
-		initLabel("OptionGroup");
-		initOptionGroup();
-		
-		// CheckBox
-		initLabel("CheckBox");
-		initCheckBox();
-		
-		// Slider
-		initLabel("Slider");
-		initSlider();
-		
-		// Upload file
-		initLabel("Upload file");
-		initUploadFile();
-		
-		// Link
-		initLabel("Link");
-		initLink();
-		
-		// Icon
-		initLabel("Icon");
-		initIcon();
-		
-		// Notification
-		initLabel("Notification");
-		initNotification();
-		
-		// Tree
-		initLabel("Tree");
-		initTree();
-		
-		// MenuBar
-		initLabel("MenuBar");
-		initMenuBar();
-		
-		// Image
-		initLabel("Image");
-		initImage();
-		
-		// Flash
-		initLabel("Flash");
-		initAdobeFlashGraphics();
-		
-		// BrowserFrame
-		initLabel("BrowserFrame");
-		initBrowserFrame();
-		
-		// Common Embedded Object
-		initLabel("Embedded");
-		initEmbedded();
-		
-		// Upload 
-		initLabel("Upload by myself");
-		initUploadTest();
-		
-		// ProgressBar
-		initLabel("ProgressBar");
-		initProgressBar();
-		
-		// CC1
-		initLabel("CompositComponent1");
-		initCompositeComponent1();
-		
-		// SizeContainedComponents
-		initLabel("SizeContainedComponents");
-		initSizeContainedComponents();
-		
-		// GridLayout
-		initLabel("GridLayout");
-		initGridLayout();
-		
-		// FormLayout
-		initLabel("FormLayout");
-		initFormlayout();
-		
-		// Panel
-		initLabel("Panel");
-		initPanel();
-		
-		// Sub Window
-		initLabel("Sub Window");
-		initSubWindow();
-		
-		// HorizontalSplitPanel
-		initLabel("HorizontalSplitPanel");
-		initHorizontalSpilitPanel();
-		
-		// JavaScript Interaciton
-		initLabel("JavaScript Interaciton");
-		initJavaScript();
-		
-		initLabel("Java Script Component");
-		initJavaScriptComponent();
-		
-		initSpace();
-	}
+    }
 	
 	/**
 	 * Add a label to indicate which component it is.
@@ -1246,7 +1250,7 @@ public class VaadinstudyUI extends UI {
 		BrowserFrame bf = new BrowserFrame("Browser", new ExternalResource("http://demo.vaadin.com/sampler/"));
 		bf.setWidth("600px");
 		bf.setHeight("200px");
-		vlayout.addComponent(bf);
+		//vlayout.addComponent(bf);
 		
 		initSpace();
 	}
@@ -1739,18 +1743,37 @@ public class VaadinstudyUI extends UI {
             }
 	    });
 	    Link link = new Link("Send Message", new ExternalResource("javascript:com.debuglife.vaadinstudy.myfunc(prompt('Message'), 42)"));
-	    Link link1 = new Link("Chart", new ExternalResource("http://s1.bdstatic.com/r/www/cache/ecom/esl/1-6-10/esl.js"));
-	    
 	    
 	    vlayout.addComponent(link);
 	    initSpace();
 	}
 	
 	private void initJavaScriptComponent(){
-	    MyComponent mycom = new MyComponent();
-	    mycom.setSizeFull();
-	    vlayout.addComponent(mycom);
+	    VerticalLayout h = new VerticalLayout();
+	    h.setSizeFull();
 	    
+	    final MyComponent mycom = new MyComponent();
+	    String option = "{title:{text:'未来一周气温变化',subtext:'纯属虚构'},tooltip:{trigger:'axis'},legend:{data:['最高气温','最低气温']},toolbox:{show:true,feature:{mark:{show:true},dataView:{show:true,readOnly:false},magicType:{show:true,type:['line','bar','stack','tiled']},restore:{show:true},saveAsImage:{show:true}}},calculable:true,xAxis:[{type:'category',boundaryGap:false,data:['周一','周二','周三','周四','周五','周六','周日']}],yAxis:[{type:'value',axisLabel:{formatter:'{value} °C'}}],series:[{name:'最高气温',type:'line',data:[11,11,15,13,12,13,10],markPoint:{data:[{type:'max',name:'最大值'},{type:'min',name:'最小值'}]},markLine:{data:[{type:'average',name:'平均值'}]}},{name:'最低气温',type:'line',data:[1,-2,2,5,3,2,0],markPoint:{data:[{name:'周最低',value:-2,xAxis:1,yAxis:-1.5}]},markLine:{data:[{type:'average',name:'平均值'}]}}]}";
+	    mycom.setValue(option);
+	    mycom.setSizeFull();
+	    h.addComponent(mycom);
+	    
+	    /**
+	    final ComboBox shapeSelect = new ComboBox("Shape ComboBox", Arrays.asList(MyComponentChartShape.values()));
+	    shapeSelect.setValue(MyComponentChartShape.BAR);
+        shapeSelect.setImmediate(true);
+        shapeSelect.addValueChangeListener(new Property.ValueChangeListener() {
+
+            @Override
+            public void valueChange(Property.ValueChangeEvent event) {
+                MyComponentChartShape shape = (MyComponentChartShape)event.getProperty().getValue();
+                Notification.show(shape.getName());
+            }
+        });
+        h.addComponent(shapeSelect);
+        **/
+
+	    vlayout.addComponent(h);
 	    initSpace();
 	}
 }
