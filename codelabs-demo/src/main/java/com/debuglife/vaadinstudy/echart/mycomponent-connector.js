@@ -3,7 +3,7 @@ window.com_debuglife_vaadinstudy_echart_MyComponent = function(){
 	var mycomponent = new mylibrary.MyComponent(this.getElement());
 	// Handle changes from the server-side
 	this.onStateChange = function() {
-		mycomponent.setValue(this.getState().value);
+		mycomponent.setValue(this.getState().mycomData.value);
 		//mycomponent.setValue(this.getState().data.theme);
 	};
 	// Pass user interaction to the server-side
