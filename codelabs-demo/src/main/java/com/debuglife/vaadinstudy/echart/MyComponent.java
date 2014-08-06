@@ -12,7 +12,7 @@ import com.vaadin.ui.JavaScriptFunction;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 
-@JavaScript({"vaadin://mylibrary.js", "vaadin://esl.js", "vaadin://echarts.js", "mycomponent-connector.js"})
+@JavaScript({"vaadin://js/echarts-plain.js", "vaadin://js/mylibrary.js", "mycomponent-connector.js"})
 public class MyComponent extends AbstractJavaScriptComponent {
 
     private static final long serialVersionUID = -9130987146148572563L;
