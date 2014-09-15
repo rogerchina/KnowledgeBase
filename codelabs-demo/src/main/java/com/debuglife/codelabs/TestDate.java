@@ -8,7 +8,8 @@ import java.util.Date;
 public class TestDate {
     
     public static void main(String[] args){
-        getOneHoursAgoTime();
+//        getOneHoursAgoTime();
+        getLastSixMonth();
     }
 
     public static String getOneHoursAgoTime() {
@@ -23,5 +24,19 @@ public class TestDate {
         
         System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         return oneHoursAgoTime;
+    }
+    
+    public static void getLastSixMonth(){
+        String[] monthArr = new String[6];
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        for(int i=5; i>=0; i--){
+            monthArr[i] = String.valueOf(cal.get(Calendar.MONTH) + 1);
+            cal.add(Calendar.MONTH, -1);
+        }
+        
+        for(int i=0; i<monthArr.length; i++){
+            System.out.print("\t" + monthArr[i]);
+        }
     }
 }
