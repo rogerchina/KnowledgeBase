@@ -219,7 +219,7 @@ public class VaadinstudyUI extends UI {
 		
 	    // JavaScript Component
         initLabel("Java Script Component");
-        initJavaScriptComponent();
+        //initJavaScriptComponent();
         
         // JavaScript Interaciton
         initLabel("JavaScript Interaciton");
