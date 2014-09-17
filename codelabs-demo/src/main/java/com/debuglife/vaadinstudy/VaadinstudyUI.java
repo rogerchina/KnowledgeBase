@@ -17,12 +17,15 @@ import javax.servlet.annotation.WebServlet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.vaadin.hene.popupbutton.PopupButton;
+import org.vaadin.hene.popupbutton.PopupButton.PopupVisibilityEvent;
+import org.vaadin.hene.popupbutton.PopupButton.PopupVisibilityListener;
 
-import com.debuglife.vaadinstudy.echart.MyComponent;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.data.Item;
+import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
@@ -217,6 +220,10 @@ public class VaadinstudyUI extends UI {
 		vlayout.setMargin(true); 
 		vlayout.setSpacing(true);
 		
+		// Popup Button
+        initLabel("PopupButton");
+        initPopupButton();
+		
 	    // JavaScript Component
         initLabel("Java Script Component");
         //initJavaScriptComponent();
@@ -362,6 +369,38 @@ public class VaadinstudyUI extends UI {
 		initSpace();
 	}
 
+	private void initPopupButton(){
+	    final TextArea textArea = new TextArea("Multi-line TextField");
+	    textArea.setImmediate(true);
+	    textArea.addValueChangeListener(new Property.ValueChangeListener() {
+	        @Override
+	        public void valueChange(Property.ValueChangeEvent event) {
+	            Notification.show("" + event.getProperty().getValue());
+	        }
+	    });
+	    textArea.setRows(10);
+	    
+	    PopupButton popupButton = new PopupButton("Action");
+        popupButton.addPopupVisibilityListener(new PopupVisibilityListener() {
+            @Override
+            public void popupVisibilityChange(PopupVisibilityEvent event) {
+                if (event.isPopupVisible()) {
+                    textArea.focus();
+                }
+            }
+        });
+        popupButton.addClickListener(new ClickListener(){
+            @Override
+            public void buttonClick(ClickEvent event) {
+                textArea.focus();
+            }
+        });
+        popupButton.setContent(textArea);
+	    
+	    vlayout.addComponent(popupButton);
+	    initSpace();
+	}
+	
     private void initTable() {
         // Access the HTTP service parameter
         File baseDir =  VaadinService.getCurrent().getBaseDirectory();
@@ -375,11 +414,9 @@ public class VaadinstudyUI extends UI {
 		Label label = new Label("RSS View");
 		vlayout.addComponent(label);
 		
-		
 		hlayout.setMargin(true);
 		hlayout.setMargin(new MarginInfo(true,true,true,false));
 		hlayout.setSizeFull();
-		
 		
 		tf.setSizeFull();
 		tf.setDescription("Please input valid url");
@@ -1747,17 +1784,17 @@ public class VaadinstudyUI extends UI {
 	}
 	
 	private void initJavaScriptComponent(){
-	    VerticalLayout h = new VerticalLayout();
-	    h.setSizeFull();
-	    
-	    final MyComponent mycom = new MyComponent();
-	    String option = "{title:{text:'未来一周气温变化',subtext:'纯属虚构'},tooltip:{trigger:'axis'},legend:{data:['最高气温','最低气温']},toolbox:{show:true,feature:{mark:{show:true},dataView:{show:true,readOnly:false},magicType:{show:true,type:['line','bar','stack','tiled']},restore:{show:true},saveAsImage:{show:true}}},calculable:true,xAxis:[{type:'category',boundaryGap:false,data:['周一','周二','周三','周四','周五','周六','周日']}],yAxis:[{type:'value',axisLabel:{formatter:'{value} °C'}}],series:[{name:'最高气温',type:'line',data:[11,11,15,13,12,13,10],markPoint:{data:[{type:'max',name:'最大值'},{type:'min',name:'最小值'}]},markLine:{data:[{type:'average',name:'平均值'}]}},{name:'最低气温',type:'line',data:[1,-2,2,5,3,2,0],markPoint:{data:[{name:'周最低',value:-2,xAxis:1,yAxis:-1.5}]},markLine:{data:[{type:'average',name:'平均值'}]}}]}";
-	    mycom.setSizeFull();
-	    mycom.setValue(option);
-	    h.addComponent(mycom);
-	    
-	    vlayout.addComponent(h);
-	    initSpace();
+//	    VerticalLayout h = new VerticalLayout();
+//	    h.setSizeFull();
+//	    
+//	    final MyComponent mycom = new MyComponent();
+//	    String option = "{title:{text:'未来一周气温变化',subtext:'纯属虚构'},tooltip:{trigger:'axis'},legend:{data:['最高气温','最低气温']},toolbox:{show:true,feature:{mark:{show:true},dataView:{show:true,readOnly:false},magicType:{show:true,type:['line','bar','stack','tiled']},restore:{show:true},saveAsImage:{show:true}}},calculable:true,xAxis:[{type:'category',boundaryGap:false,data:['周一','周二','周三','周四','周五','周六','周日']}],yAxis:[{type:'value',axisLabel:{formatter:'{value} °C'}}],series:[{name:'最高气温',type:'line',data:[11,11,15,13,12,13,10],markPoint:{data:[{type:'max',name:'最大值'},{type:'min',name:'最小值'}]},markLine:{data:[{type:'average',name:'平均值'}]}},{name:'最低气温',type:'line',data:[1,-2,2,5,3,2,0],markPoint:{data:[{name:'周最低',value:-2,xAxis:1,yAxis:-1.5}]},markLine:{data:[{type:'average',name:'平均值'}]}}]}";
+//	    mycom.setSizeFull();
+//	    mycom.setValue(option);
+//	    h.addComponent(mycom);
+//	    
+//	    vlayout.addComponent(h);
+//	    initSpace();
 	}
 }
 
