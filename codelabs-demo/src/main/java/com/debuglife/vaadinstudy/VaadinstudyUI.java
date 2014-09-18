@@ -120,7 +120,7 @@ public class VaadinstudyUI extends UI {
 	
 	// component of page whole layout 
 	private VerticalSplitPanel topLevelLayout;
-	private VerticalLayout headerLayout;
+	private Panel headerPanel;
 	private HorizontalSplitPanel bottomLayout;
 	private Panel accordionPanel;
 	private Panel rightPanel;
@@ -135,22 +135,24 @@ public class VaadinstudyUI extends UI {
 	    topLevelLayout.setSplitPosition(8, Unit.PERCENTAGE);
 	    topLevelLayout.setLocked(true);
 	    topLevelLayout.setSizeFull();
+	    topLevelLayout.setStyleName("v-spliter");
 	    
 	    // 2. header layout
-	    headerLayout = new VerticalLayout();
-	    headerLayout.setSizeFull();
-	    headerLayout.setMargin(new MarginInfo(true,true,false,true));
+	    headerPanel = new Panel();
+	    headerPanel.setWidth("100%");
+	    headerPanel.setHeight("100%");
+	    headerPanel.setSizeFull();
 	    Label headerLabel = new Label("Vaadin Code Labs");
 	    headerLabel.setSizeFull();
 	    headerLabel.addStyleName("v-label-header");
-	    headerLayout.addComponent(headerLabel);
+	    headerPanel.setContent(headerLabel);
 	    
 	    // 3. bottom layout
 	    bottomLayout = new HorizontalSplitPanel();
 	    bottomLayout.setSplitPosition(20, Unit.PERCENTAGE);
 	    bottomLayout.setLocked(true);
 	    
-	    topLevelLayout.setFirstComponent(headerLayout);
+	    topLevelLayout.setFirstComponent(headerPanel);
 	    topLevelLayout.setSecondComponent(bottomLayout);
 	    
         accordionPanel = new Panel();
