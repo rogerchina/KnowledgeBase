@@ -391,12 +391,6 @@ public class VaadinstudyUI extends UI {
                 }
             }
         });
-        popupButton.addClickListener(new ClickListener(){
-            @Override
-            public void buttonClick(ClickEvent event) {
-                textArea.focus();
-            }
-        });
         popupButton.setContent(textArea);
 	    
 	    vlayout.addComponent(popupButton);
