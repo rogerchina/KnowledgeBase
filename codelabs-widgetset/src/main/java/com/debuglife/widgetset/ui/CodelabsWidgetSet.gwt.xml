@@ -5,5 +5,5 @@
 <module>
 	<!-- Hint for WidgetSetBuilder not to automatically update the file -->
     <!-- WS Compiler: manually edited -->
-	<inherits name="de.medavis.vaadin.framework.MedavisWidgetSet" />
+	<inherits name="org.vaadin.jouni.animator.AnimatorWidgetset" />
 </module>

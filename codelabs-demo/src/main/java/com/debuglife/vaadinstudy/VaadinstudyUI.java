@@ -20,6 +20,7 @@ import org.json.JSONException;
 import org.vaadin.hene.popupbutton.PopupButton;
 import org.vaadin.hene.popupbutton.PopupButton.PopupVisibilityEvent;
 import org.vaadin.hene.popupbutton.PopupButton.PopupVisibilityListener;
+import org.vaadin.jouni.animator.Disclosure;
 
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
@@ -222,6 +223,11 @@ public class VaadinstudyUI extends UI {
 		vlayout.setMargin(true); 
 		vlayout.setSpacing(true);
 		
+		// Disclouse
+		initLabel("Disclouse");
+		initDisclousePanel();
+		
+		
 		// Popup Button
         initLabel("PopupButton");
         initPopupButton();
@@ -369,6 +375,13 @@ public class VaadinstudyUI extends UI {
         initTable();
         
 		initSpace();
+	}
+	
+	private void initDisclousePanel(){
+	    Disclosure dis = new Disclosure("Show more");
+	    vlayout.addComponent(dis);
+
+        initSpace();
 	}
 
 	private void initPopupButton(){
