@@ -41,7 +41,7 @@ public class SSLServer {
                 String userName = input.readLine();
                 String password = input.readLine();
                 PrintWriter output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-                if(userName.equals(USER_NAME) && password.equals(password)){
+                if(userName.equals(USER_NAME) && password.equals(PASSWORD)){
                     output.println("Welcome, " + userName);
                     output.println(SECRET_CONTENT);
                 }else{
