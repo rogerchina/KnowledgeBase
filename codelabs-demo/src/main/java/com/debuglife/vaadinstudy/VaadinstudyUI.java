@@ -22,6 +22,11 @@ import org.vaadin.hene.popupbutton.PopupButton.PopupVisibilityEvent;
 import org.vaadin.hene.popupbutton.PopupButton.PopupVisibilityListener;
 //import org.vaadin.jouni.animator.Disclosure;
 
+
+import com.debuglife.codelabs.components.Broadcaster;
+import com.debuglife.codelabs.components.CompositeComponent1;
+import com.debuglife.codelabs.components.ExampleUtil;
+import com.debuglife.codelabs.components.ParseXml;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
