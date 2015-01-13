@@ -9,8 +9,8 @@ import java.util.List;
 
 
 public class TestCreateSomeNumberFiles {
-    private static int totalNum = 100000;
-    private static int numOfGroup = 40;
+    private static int totalNum = 50000;
+    private static int numOfGroup = 8;
     private static List<Thread> threadList = new ArrayList<Thread>();
 
     public static void main(String[] args) throws Exception{
@@ -20,25 +20,37 @@ public class TestCreateSomeNumberFiles {
         String fileSize_2M = "D:\\workspace\\communication-stack-trunk\\communication-hl7\\src\\test\\resources\\messages\\MDM_T02_pat_JPG.hl7";
         String desFilePath = "D:\\test\\medavis\\service\\gateway4med\\in\\10w\\ADT_A01_";
         
-        //executeTask(fileSize_1k, desFilePath,".HL7");
+        //createFiles(fileSize_1k, desFilePath, suffix);
         deleteFiles(desFilePath, suffix);
         
         boolean allFinished = false;
         while(!allFinished){
             allFinished = true;
             for(int i=0; i<threadList.size(); i++){
-                FileCreator t = (FileCreator)threadList.get(i);
+                FileHandler t = (FileHandler)threadList.get(i);
                 allFinished = allFinished && t.isFinished();
             }
         }
         
-        long totalExectueTime = 0;
+        long [] time = new long[threadList.size()]; 
         for(int i=0; i<threadList.size(); i++){
-            FileCreator t = (FileCreator)threadList.get(i);
-            totalExectueTime += t.getExectueTime();
+            FileHandler t = (FileHandler)threadList.get(i);
+            time[i] = t.getExecuteTime();
         }
-        System.out.println("******* it takes total " + totalExectueTime + " ******");
-        System.out.println("******* it takes total " + showHumanizedTime(totalExectueTime) + " ******");
+        
+        long temp;
+        for(int i=0; i<time.length; i++){
+            for(int j=i+1; j<time.length; j++){
+                if(time[i] > time[j]){
+                    temp = time[i];
+                    time[i] = time[j];
+                    time[j] = temp;
+                }
+            }
+        }
+        
+        System.out.println("******* it takes total " + time[time.length-1] + " ******");
+        System.out.println("******* it takes total " + showHumanizedTime(time[time.length-1]) + " ******");
     }
     
     public static String showHumanizedTime(long time){
@@ -55,7 +67,7 @@ public class TestCreateSomeNumberFiles {
         return timeString;
     }
     
-    public static void executeTask(String srcFilePath, String desFilePath, String suffix) {
+    public static void createFiles(String srcFilePath, String desFilePath, String suffix) {
         int x[] = groupData(totalNum, numOfGroup);
         printArray(x);
         
@@ -81,10 +93,6 @@ public class TestCreateSomeNumberFiles {
     public static void deleteFiles(String desFilePath,String suffix){
         int x[] = groupData(totalNum, numOfGroup);
         for(int i=0; i<x.length; i++){
-            if( i == x.length - 1){
-                
-            }
-            
             FileDeletor w = new FileDeletor(i, x[i], "thread-"+i);
             w.setDesFilePath(desFilePath);
             w.setSuffix(suffix);
@@ -120,7 +128,8 @@ public class TestCreateSomeNumberFiles {
     }
 }
 
-class FileCreator extends Thread{
+
+class FileCreator extends FileHandler{
     private boolean finishedFlag = false;
     private long startTime = 0;
     private long endTime = 0;
@@ -137,8 +146,30 @@ class FileCreator extends Thread{
         this.end = end;
     }
     
+    public void setSrcFilePath(String srcFilePath){
+        this.srcFilePath = srcFilePath; 
+    }
+    
+    public void setDesFilePath(String desFilePath){
+        this.desFilePath = desFilePath;
+    }
+    
+    public void setSuffix(String suffix){
+        this.suffix = suffix;
+    }
+
     @Override
-    public void run() {
+    public boolean isFinished(){
+        return finishedFlag;
+    }
+    
+    @Override
+    public long getExecuteTime() {
+        return endTime - startTime;
+    }
+
+    @Override
+    public void execute() {
         try {
             startTime = System.currentTimeMillis();
             for(int i=start-1; i>=end; i--){
@@ -152,68 +183,40 @@ class FileCreator extends Thread{
         }
     }
     
-    public void setSrcFilePath(String srcFilePath){
-        this.srcFilePath = srcFilePath; 
-    }
-    
-    public void setDesFilePath(String desFilePath){
-        this.desFilePath = desFilePath;
-    }
-    
-    public void setSuffix(String suffix){
-        this.suffix = suffix;
-    }
-    
-    public boolean isFinished(){
-        return finishedFlag;
-    }
-    
-    public long getExectueTime(){
-        return endTime - startTime;
-    }
-    
-    public static void copyFile(String oldPath, String newPath)
-            throws Exception {
-
-        int bytesum = 0;
+    public static void copyFile(String oldPath, String newPath) {
+        //int bytesum = 0;
         int byteread = 0;
 
         File oldfile = new File(oldPath);
         if (oldfile.exists()) {
-            InputStream inStream = new FileInputStream(oldPath);
+            InputStream fis = null;
+            FileOutputStream fs = null;
+            byte[] buffer = null;
             try {
-                FileOutputStream fs = new FileOutputStream(newPath);
-                try{
-                    byte[] buffer = new byte[1024];
-                    while ((byteread = inStream.read(buffer)) != -1) {
-                        bytesum += byteread;
-                        fs.write(buffer, 0, byteread);
-                    }
-                }catch(Exception ex){
-                    throw ex;
-                }finally{
-                    try{
-                        fs.flush();
-                        fs.close();
-                    }catch(Exception ex){
-                        //some log info
-                    }
+                fis = new FileInputStream(oldPath);
+                fs = new FileOutputStream(newPath);
+                buffer = new byte[1024];
+                while ((byteread = fis.read(buffer)) != -1) {
+                    //bytesum += byteread;
+                    fs.write(buffer, 0, byteread);
                 }
+                fs.flush();
+                //System.out.println("the file's size is: " + bytesum);
             } catch (Exception ex) {
-                throw ex;
+                ex.printStackTrace();
             } finally {
                 try{
-                    inStream.close();
+                    fs.close();
+                    fis.close();
                 }catch(Exception ex){
                     // some log info
                 }
             }
-
         }
     }
 }
 
-class FileDeletor extends Thread{
+class FileDeletor extends FileHandler{
     private boolean finishedFlag = false;
     private long startTime = 0;
     private long endTime = 0;
@@ -229,8 +232,26 @@ class FileDeletor extends Thread{
         this.num = num;
     }
     
+    public void setDesFilePath(String desFilePath){
+        this.desFilePath = desFilePath;
+    }
+    
+    public void setSuffix(String suffix){
+        this.suffix = suffix;
+    }
+    
     @Override
-    public void run() {
+    public boolean isFinished(){
+        return finishedFlag;
+    }
+    
+    @Override
+    public long getExecuteTime() {
+        return endTime - startTime;
+    }
+
+    @Override
+    public void execute() {
         try {
             startTime = System.currentTimeMillis();
             for(int i=num*start; i<num*(1+start); i++){
@@ -244,21 +265,19 @@ class FileDeletor extends Thread{
             e.printStackTrace();
         }
     }
-    
-    public void setDesFilePath(String desFilePath){
-        this.desFilePath = desFilePath;
-    }
-    
-    public void setSuffix(String suffix){
-        this.suffix = suffix;
-    }
-    
-    public boolean isFinished(){
-        return finishedFlag;
-    }
-    
-    public long getExectueTime(){
-        return endTime - startTime;
-    }
 }
 
+abstract class FileHandler extends Thread{
+    public abstract boolean isFinished();
+    public abstract long getExecuteTime();
+    public abstract void execute();
+    
+    public FileHandler(String name){
+        super(name);
+    }
+    
+    @Override
+    public void run() {
+        execute();
+    }
+}
