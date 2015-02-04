@@ -7,7 +7,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * this is for creating and deleting files in multiple threads, it
+ * is faster than os file system generally. 
+ * so far, it didn't support recursive folder.
+ * @author roger
+ *
+ */
 public class TestFastCreateAndDeleteFiles {
     private static int totalNum = 50000;
     private static int numOfGroup = 8;
