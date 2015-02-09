@@ -4,27 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * <br/>
  * this is for creating and deleting files in multiple threads, it
  * is faster than os file system generally. 
- * so far, it didn't support recursive folder.
+ * so far, it didn't support recursive folder. <br/>
  * @author roger
  *
  */
 public class TestFastCreateAndDeleteFiles {
+    // config info
+    private static String suffix = ".HL7";
+    private static String fileSize_1k = "D:\\workspace\\communication-stack-parent\\communication-hl7\\src\\test\\resources\\messages\\ADT_A01 - Copy (2).hl7";
+    private static String fileSize_2M = "D:\\workspace\\communication-stack-trunk\\communication-hl7\\src\\test\\resources\\messages\\MDM_T02_pat_JPG.hl7";
+    private static String desFilePath = "D:\\test\\medavis\\service\\gateway4med\\in\\10w\\ADT_A01_";
     private static int totalNum = 50000;
     private static int numOfGroup = 8;
+    
+    // thread list
     private static List<Thread> threadList = new ArrayList<Thread>();
 
     public static void main(String[] args) throws Exception{
-        String suffix = ".HL7";
-        
-        String fileSize_1k = "D:\\workspace\\communication-stack-parent\\communication-hl7\\src\\test\\resources\\messages\\ADT_A01 - Copy (2).hl7";
-        String fileSize_2M = "D:\\workspace\\communication-stack-trunk\\communication-hl7\\src\\test\\resources\\messages\\MDM_T02_pat_JPG.hl7";
-        String desFilePath = "D:\\test\\medavis\\service\\gateway4med\\in\\10w\\ADT_A01_";
         
         //createFiles(fileSize_1k, desFilePath, suffix);
         deleteFiles(desFilePath, suffix);
-        
+        calExecuteTime();
+    }
+    
+    public static void calExecuteTime(){
         boolean allFinished = false;
         while(!allFinished){
             allFinished = true;
