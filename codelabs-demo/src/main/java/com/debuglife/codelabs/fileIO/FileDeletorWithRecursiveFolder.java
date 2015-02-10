@@ -10,42 +10,23 @@ public class FileDeletorWithRecursiveFolder extends FileHandler{
     
     private String[] fileArray = null;
     
-    //private String desFilePath = "";
-    //private String suffix = "";
-    
-    //private int start;
-    //private int num;
-    public FileDeletorWithRecursiveFolder(int start, int num, String name){
-        super(name);
-//        this.start = start;
-//        this.num = num;
-    }
-    
     public FileDeletorWithRecursiveFolder(String[] fileArray, String name){
         super(name);
         this.fileArray = fileArray;
     }
     
-    public void setDesFilePath(String desFilePath){
-        //this.desFilePath = desFilePath;
-    }
-    
-    public void setSuffix(String suffix){
-        //this.suffix = suffix;
-    }
-    
     @Override
-    public boolean isFinished(){
+    protected boolean isFinished(){
         return finishedFlag;
     }
     
     @Override
-    public long getExecuteTime() {
+    protected long getExecuteTime() {
         return endTime - startTime;
     }
 
     @Override
-    public void execute() {
+    protected void execute() {
         try {
             startTime = System.currentTimeMillis();
 
@@ -61,7 +42,7 @@ public class FileDeletorWithRecursiveFolder extends FileHandler{
         }
     }
     
-    public void deleteFiles(String filePath){
+    protected void deleteFiles(String filePath){
         if(filePath != null){
             File f = new File(filePath);
             if(f.exists()){
@@ -71,8 +52,9 @@ public class FileDeletorWithRecursiveFolder extends FileHandler{
                         deleteFiles(fileArray[i].getAbsolutePath());
                     }
                 }
-                else
+                else{
                     f.delete();
+                }
             }
         }
     }

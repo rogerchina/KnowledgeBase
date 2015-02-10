@@ -28,17 +28,17 @@ public class FileDeletor extends FileHandler{
     }
     
     @Override
-    public boolean isFinished(){
+    protected boolean isFinished(){
         return finishedFlag;
     }
     
     @Override
-    public long getExecuteTime() {
+    protected long getExecuteTime() {
         return endTime - startTime;
     }
 
     @Override
-    public void execute() {
+    protected void execute() {
         try {
             startTime = System.currentTimeMillis();
             for(int i=num*start; i<num*(1+start); i++){

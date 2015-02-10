@@ -15,17 +15,17 @@ public abstract class FileHandler extends Thread{
     /**
      * the running flag.
      */
-    public abstract boolean isFinished();
+    protected abstract boolean isFinished();
     
     /**
      * return the total execute time.
      */
-    public abstract long getExecuteTime();
+    protected abstract long getExecuteTime();
     
     /**
      * execute task.
      */
-    public abstract void execute();
+    protected abstract void execute();
     
 }
 
