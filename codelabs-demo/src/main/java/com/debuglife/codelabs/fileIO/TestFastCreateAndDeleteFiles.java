@@ -6,18 +6,33 @@ import java.util.List;
 
 /**
  * <br/>
- * this is for creating and deleting files in multiple threads, it
- * is faster than os file system generally. 
- * so far, 
- * CREATE FILE: not support recursive folder. <br/>
- * DELETE FILE: support recursive folder. <br/>
+ * This is a tool for creating and deleting files in multiple threads, which
+ * is faster than os file system generally in case there are a large amount of
+ * little fileis scatterring in the diffent and many folders. when deleting them
+ * in file system, generally it takes a lot of times.
+ * So far, 
+ * 
+ * changelog
+ * -----------------------------------------------------------------
+ * v0.0.1；
+ *      CREATE FILE: not support recursive folder. <br/>
+ *      DELETE FILE: not support recursive folder. <br/>
+ * v0.1.1:
+ *      CREATE FILE: not support recursive folder. <br/>
+ *      DELETE FILE: support recursive folder. <br/>
  *
+ *
+ *
+ *
+ *todo
+ *------------------------------------------------------------------
+ * 1. do it in linux command style.
  */
 public class TestFastCreateAndDeleteFiles {
     // config info
     private static String suffix = ".HL7";
-    private static String fileSize_1k = "D:\\workspace\\communication-stack-parent\\communication-hl7\\src\\test\\resources\\messages\\ADT_A01 - Copy (2).hl7";
-    private static String fileSize_2M = "D:\\workspace\\communication-stack-trunk\\communication-hl7\\src\\test\\resources\\messages\\MDM_T02_pat_JPG.hl7";
+    private static String fileSize_1k = "D:\\test\\ADT_A01.hl7";
+    private static String fileSize_2M = "D:\\test\\MDM_T02_pat_JPG.hl7";
     private static String desFilePath = "D:\\test\\medavis\\service\\gateway4med\\in\\10w\\ADT_A01_";
     private static String testFilePath = "D:\\test\\manyFiles\\";
     private static int totalNum = 100000;
@@ -112,7 +127,7 @@ public class TestFastCreateAndDeleteFiles {
                         break;
                 }
                 
-                FileDeletorWithRecursiveFolder fdwrf = new FileDeletorWithRecursiveFolder(fileStrArray, "thread-name-" + k);
+                FileDeletorRecursively fdwrf = new FileDeletorRecursively(fileStrArray, "thread-name-" + k);
                 fdwrf.start();
                 threadList.add(fdwrf);
             }
