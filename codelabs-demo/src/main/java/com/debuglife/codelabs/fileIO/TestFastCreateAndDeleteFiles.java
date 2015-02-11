@@ -8,8 +8,9 @@ import java.util.List;
  * <br/>
  * this is for creating and deleting files in multiple threads, it
  * is faster than os file system generally. 
- * so far, it didn't support recursive folder. <br/>
- * @author roger
+ * so far, 
+ * CREATE FILE: not support recursive folder. <br/>
+ * DELETE FILE: support recursive folder. <br/>
  *
  */
 public class TestFastCreateAndDeleteFiles {
@@ -18,16 +19,16 @@ public class TestFastCreateAndDeleteFiles {
     private static String fileSize_1k = "D:\\workspace\\communication-stack-parent\\communication-hl7\\src\\test\\resources\\messages\\ADT_A01 - Copy (2).hl7";
     private static String fileSize_2M = "D:\\workspace\\communication-stack-trunk\\communication-hl7\\src\\test\\resources\\messages\\MDM_T02_pat_JPG.hl7";
     private static String desFilePath = "D:\\test\\medavis\\service\\gateway4med\\in\\10w\\ADT_A01_";
-    private static String testFilePath = "D:\\test";
-    private static int totalNum = 50000;
-    private static int numOfGroup = 8;
+    private static String testFilePath = "D:\\test\\manyFiles\\";
+    private static int totalNum = 100000;
+    private static int numOfGroup = 4;
     
     // thread list
     private static List<Thread> threadList = new ArrayList<Thread>();
 
     public static void main(String[] args) throws Exception{
-        //createFiles(fileSize_1k, desFilePath, suffix);
-        deleteFiles(desFilePath, suffix);
+        //createFiles(fileSize_1k, testFilePath, suffix);
+        //deleteFiles(desFilePath, suffix);
         deleteFilesWithRecurisiveFolder(testFilePath);
         calExecuteTime();
     }
@@ -86,17 +87,31 @@ public class TestFastCreateAndDeleteFiles {
         if(filePath == null) return;
         File f = new File(filePath);
         if(!f.exists()) return;
-        if(f.isFile()) f.delete();
+        if(f.isFile()){
+            f.delete();
+        }
         if(f.isDirectory()){
             File[] files = f.listFiles();
             int x[] = groupData(files.length, numOfGroup);
+            int temp=0;
             for(int k=0;k<x.length;k++){
                 String[] fileStrArray = new String[x[k]];
-                for(int j=0;j<fileStrArray.length;j++){
-                    for(int i=x[k]*(k);i<files.length;i++){
-                        fileStrArray[j] = files[i].getAbsolutePath();
-                    }
+                if(x.length > 1){
+                    temp = x[x.length - 2];
+                }else{
+                    temp = x[k];
                 }
+                int m=0;
+                while(m<fileStrArray.length){                    
+                    for(int i=temp*(k);i<files.length;i++){
+                        fileStrArray[m++] = files[i].getAbsolutePath();
+                        if(m>=fileStrArray.length)
+                            break;
+                    } 
+                    if(m>=fileStrArray.length)
+                        break;
+                }
+                
                 FileDeletorWithRecursiveFolder fdwrf = new FileDeletorWithRecursiveFolder(fileStrArray, "thread-name-" + k);
                 fdwrf.start();
                 threadList.add(fdwrf);

@@ -51,9 +51,13 @@ public class FileDeletorWithRecursiveFolder extends FileHandler{
                     for(int i=0;i<fileArray.length;i++){
                         deleteFiles(fileArray[i].getAbsolutePath());
                     }
+                    if(f.listFiles().length == 0){
+                        f.delete();
+                    }
                 }
                 else{
                     f.delete();
+                    System.out.println(Thread.currentThread().getName() + "--" + f.getAbsolutePath() + "--deleted succesfully!");
                 }
             }
         }
