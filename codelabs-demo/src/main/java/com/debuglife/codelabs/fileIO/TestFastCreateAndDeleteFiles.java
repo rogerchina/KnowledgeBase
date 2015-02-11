@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <br/>
  * This is a tool for creating and deleting files in multiple threads, which
  * is faster than os file system generally in case there are a large amount of
  * little fileis scatterring in the diffent and many folders. when deleting them
@@ -13,20 +12,20 @@ import java.util.List;
  * So far, 
  * 
  * changelog
- * -----------------------------------------------------------------
+ * <----------------------------------------------------------------->
  * v0.0.1；
- *      CREATE FILE: not support recursive folder. <br/>
- *      DELETE FILE: not support recursive folder. <br/>
+ *      CREATE FILE: not support recursive folder.
+ *      DELETE FILE: not support recursive folder.
  * v0.1.1:
- *      CREATE FILE: not support recursive folder. <br/>
- *      DELETE FILE: support recursive folder. <br/>
+ *      CREATE FILE: not support recursive folder.
+ *      DELETE FILE: support recursive folder.
  *
  *
  *
  *
  *todo
- *------------------------------------------------------------------
- * 1. do it in linux command style.
+ *<------------------------------------------------------------------>
+ * 1. improve it in linux command style.
  */
 public class TestFastCreateAndDeleteFiles {
     // config info
@@ -44,7 +43,7 @@ public class TestFastCreateAndDeleteFiles {
     public static void main(String[] args) throws Exception{
         //createFiles(fileSize_1k, testFilePath, suffix);
         //deleteFiles(desFilePath, suffix);
-        deleteFilesWithRecurisiveFolder(testFilePath);
+        deleteFilesRecurisively(testFilePath);
         calExecuteTime();
     }
     
@@ -98,7 +97,7 @@ public class TestFastCreateAndDeleteFiles {
      * delete files in resurisive way.
      * @param filePath
      */
-    public static void deleteFilesWithRecurisiveFolder(String filePath){
+    public static void deleteFilesRecurisively(String filePath){
         if(filePath == null) return;
         File f = new File(filePath);
         if(!f.exists()) return;
