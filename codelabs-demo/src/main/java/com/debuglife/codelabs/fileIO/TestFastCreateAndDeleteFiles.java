@@ -94,7 +94,7 @@ public class TestFastCreateAndDeleteFiles {
     }
     
     /**
-     * delete files in resurisive way.
+     * delete files in a resurisive way.
      * @param filePath
      */
     public static void deleteFilesRecurisively(String filePath){
