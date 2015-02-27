@@ -5,10 +5,10 @@ import java.sql.Connection;
 import java.util.Map;
 
 public class DBConnection {
-//	public static String dbUrl = "jdbc:sqlserver://Gvs91191.americas.hpqcorp.net:2048;databaseName=QDPCFGI;SendStringParametersAsUnicode=false";
+//	public static String dbUrl = "";
 //	public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-//	public static String userName = "qdpuser";
-//	public static String password = "!QAZ2wsx#EDC";
+//	public static String userName = "";
+//	public static String password = "";
 //	
 	public static String environmentTypeNm = "ITG";
 	public static String productTypeNm = "QDP";
