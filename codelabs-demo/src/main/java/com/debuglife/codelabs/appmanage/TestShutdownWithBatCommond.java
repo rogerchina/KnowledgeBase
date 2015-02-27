@@ -1,14 +1,15 @@
 package com.debuglife.codelabs.appmanage;
 
 
-public class TestStartUpWithBatCommond {
+public class TestShutdownWithBatCommond {
 
-    public static void start(String[] args) {
+    public static void stop(String[] args) {
         printString();
     }
     
     public static void printString(){
-        System.out.println("starting...");
+        System.out.println("stoping...");
     }
+
 
 }

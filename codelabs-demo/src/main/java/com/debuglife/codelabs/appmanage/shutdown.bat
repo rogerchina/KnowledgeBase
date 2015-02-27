@@ -26,4 +26,4 @@ for /R ..\lib %%A in (*.jar) do (
 echo *******************************************************************************************************************************
 echo "java %JVM_ARGS% -classpath %CLASSPATH%" com.debuglife.codelabs.appmanage.DCSBootLoader
 echo *******************************************************************************************************************************
-java %JVM_ARGS% -classpath %CLASSPATH% com.debuglife.codelabs.appmanage.DCSBootLoader start
+java %JVM_ARGS% -classpath %CLASSPATH% com.debuglife.codelabs.appmanage.DCSBootLoader stop
