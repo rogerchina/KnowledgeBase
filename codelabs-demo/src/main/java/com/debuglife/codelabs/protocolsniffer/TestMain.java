@@ -18,10 +18,10 @@ public class TestMain {
 		serverInfo.put("password", "");
 		serverInfo.put("publickey", "");
 		serverInfo.put("passphrase", "");
-		serverInfo.put("protocol", "sftp");
+		serverInfo.put("protocol", "");
 		serverInfo.put("identity", "");
-		serverInfo.put("port", "22");
-		serverInfo.put("sourceOS", "2");
+		serverInfo.put("port", "");
+		serverInfo.put("sourceOS", "");
 		
 		printLog("==============before new sniffer()=============", true);
 		ProtocolSniffer ps = new ProtocolSniffer(serverInfo);
