@@ -8,16 +8,22 @@ package com.debuglife.codelabs.appmanage;
 public class DCSBootLoader {
     
     private static DCSBootLoader daemon = null;
+    private static DCS dcsService = null;
     
-    private void init() throws Exception{
+    private void init(String[] args) throws Exception{
         // do something
+        // config
+        // init service
+        dcsService = new DCS();
+        dcsService.loadArgs(args);
     }
     
     public static void main(String[] args) {
         if(daemon == null){
             DCSBootLoader bootLoader = new DCSBootLoader();
             try {
-                bootLoader.init();
+                // init dcs service
+                bootLoader.init(args);
             } catch(Exception e) {
                 e.printStackTrace();
                 return;
@@ -34,13 +40,14 @@ public class DCSBootLoader {
         }
         
         if(command.equals("start")){
-            //startUpDCS(args);
-            TestStartUpWithBatCommond.start(args);
+            dcsService.startup();
+            dcsService.start();
         }
         
         if(command.equals("stop")){
-            //shutdownDCS(args)
-            TestShutdownWithBatCommond.stop(args);
+            if(dcsService.isRunning()){
+                dcsService.shutdown();
+            }
         }
     }
 }
