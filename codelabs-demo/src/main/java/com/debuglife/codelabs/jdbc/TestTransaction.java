@@ -36,6 +36,8 @@ public class TestTransaction {
     public void testTransaction() throws Exception{
         initConnection();
         
+        // 设置隔离级别
+        conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
         conn.setAutoCommit(false);
         
         Statement stmt = conn.createStatement();
