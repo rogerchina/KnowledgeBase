@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
+
 
 
 public class TestTransaction {
@@ -60,5 +64,47 @@ public class TestTransaction {
         conn = DriverManager.getConnection(url, userName, password);
         conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
     }
+    
+    /**
+     * update "TimeStampSynchronized" in the Logging_DataChanges table
+     * with current date time in timestamp style.
+     * execute updating once every 200 data.
+     * 
+     * @param List<loggingDataChangeID>
+     * @throws Exception
+     */
+//    public void updateLoggingDataChangeTimeStampSynchronizedByBatch(List<Integer> ids) throws Exception {
+//        if(ids == null || ids.size() <= 0){
+//            return;
+//        }
+//        
+//        Connection conn = null;
+//        Statement stmt = null;
+//        try {
+//            conn = cm.getConnection();
+//            stmt = cm.createStatement(conn);
+//            String sql = null;
+//            Integer id = null;
+//            for(int i=0; i<ids.size(); i++){
+//                id = ids.get(i);
+//                sql = "update " + GlobalVariable.DATA_BASE_TABLE_NAMESPACE + "." + loggingTableName + " t set t.TimeStampSynchronized='" + new Timestamp(new Date().getTime()) + "' where t.LDC_ID=" + id.intValue();
+//                stmt.addBatch(sql);
+//                
+//                if(i == ids.size()-1){
+//                    stmt.executeBatch();
+//                    break;
+//                }
+//                if(i % 200 == 0 && i != 0){
+//                    stmt.executeBatch();
+//                }
+//            }
+//            cm.executeUpdateByBatch(stmt);;
+//        } catch(Exception e) {
+//            logger.error("failed to update TimeStampSynchronized in " + loggingTableName + " table!", e);
+//            throw new Exception("failed to update TimeStampSynchronized in " + loggingTableName + " table!", e);
+//        } finally {
+//            cm.closeStatement(stmt);
+//        }
+//    }
     
 }

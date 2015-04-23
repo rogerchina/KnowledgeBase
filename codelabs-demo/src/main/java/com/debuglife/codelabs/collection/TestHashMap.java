@@ -8,7 +8,18 @@ import java.util.TreeSet;
 
 public class TestHashMap {
     public static void main(String[] args){
-        testMap();
+//        testMap();
+        testKeyOverride();
+    }
+    
+    public static void testKeyOverride(){
+        String key = "roger";
+        Map<String,String> map = new HashMap<>();
+        map.put(key, "roger"); 
+        System.out.println(map.get(key));
+        map.put(key, "roger1");
+        System.out.println(map.get(key));
+        
     }
     
     public static void testMap(){
