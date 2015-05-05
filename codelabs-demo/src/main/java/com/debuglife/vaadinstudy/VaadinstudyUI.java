@@ -17,9 +17,9 @@ import javax.servlet.annotation.WebServlet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.vaadin.hene.popupbutton.PopupButton;
-import org.vaadin.hene.popupbutton.PopupButton.PopupVisibilityEvent;
-import org.vaadin.hene.popupbutton.PopupButton.PopupVisibilityListener;
+//import org.vaadin.hene.popupbutton.PopupButton;
+//import org.vaadin.hene.popupbutton.PopupButton.PopupVisibilityEvent;
+//import org.vaadin.hene.popupbutton.PopupButton.PopupVisibilityListener;
 //import org.vaadin.jouni.animator.Disclosure;
 
 
@@ -481,19 +481,19 @@ public class VaadinstudyUI extends UI implements Broadcaster.BroadcastListener {
         });
         textArea.setRows(10);
 
-        PopupButton popupButton = new PopupButton("Action");
-        popupButton.addPopupVisibilityListener(new PopupVisibilityListener() {
-
-            @Override
-            public void popupVisibilityChange(PopupVisibilityEvent event) {
-                if(event.isPopupVisible()) {
-                    textArea.focus();
-                }
-            }
-        });
-        popupButton.setContent(textArea);
-
-        vlayout.addComponent(popupButton);
+//        PopupButton popupButton = new PopupButton("Action");
+//        popupButton.addPopupVisibilityListener(new PopupVisibilityListener() {
+//
+//            @Override
+//            public void popupVisibilityChange(PopupVisibilityEvent event) {
+//                if(event.isPopupVisible()) {
+//                    textArea.focus();
+//                }
+//            }
+//        });
+//        popupButton.setContent(textArea);
+//
+//        vlayout.addComponent(popupButton);
         initSpace();
     }
 
