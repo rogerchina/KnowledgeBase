@@ -34,7 +34,7 @@ public class TestHashMap {
         
         Set<String> set = new TreeSet<>();
         set.add("1");
-        set.add("2");
+        set.add("2"); 
         set.add("3");
         
         for(String str : set){
