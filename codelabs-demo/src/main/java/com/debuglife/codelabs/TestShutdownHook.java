@@ -42,6 +42,6 @@ public class TestShutdownHook {
                 }
             }
             
-        }, 0, 2*1000);
+        }, 500, 2*1000);
     }
 }
