@@ -6,6 +6,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 
 public class TestClass {
@@ -17,6 +20,23 @@ public class TestClass {
     }
     
     public TestClass(){
+    }
+    
+    public static void testClassAsParameter() throws Exception{
+        List<String> list = new ArrayList<>();
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        
+        test1(List.class);
+        test1(String.class);
+    }
+    
+    public static void test1(Class clazz) throws Exception{
+        final Class c = null;
+        if(clazz == String.class){
+            
+        }
     }
     
     @SuppressWarnings("rawtypes")
