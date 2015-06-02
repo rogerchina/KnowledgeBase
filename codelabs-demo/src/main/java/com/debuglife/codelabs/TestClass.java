@@ -16,7 +16,8 @@ public class TestClass {
     public int n = 1;
     
     public static void main(String[] args) throws Exception{
-        testClass();
+        //testClass();
+        testClassLoader();
     }
     
     public TestClass(){
@@ -95,5 +96,8 @@ public class TestClass {
     
     public static void testClassLoader(){
         ClassLoader classLoader = TestClass.class.getClassLoader();
+        ClassLoader classLoader1 =  String.class.getClassLoader();
+        System.out.println(classLoader == classLoader1);
+        System.out.println(classLoader.equals(classLoader1));
     }
 }

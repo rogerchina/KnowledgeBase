@@ -23,8 +23,6 @@ class NetWorkClassLoader extends ClassLoader{
 
     private byte[] loadClassData(String name) {
         // load the class data from the connection
-        NetWorkClassLoader.class.getClassLoader();
         return null;
     }
-
 }

@@ -36,15 +36,29 @@ class Person implements Comparable<Object>{
 		return id + "_" + firstName + " " + lastName;
 	}
 	
+	@Override
 	public boolean equals(Object obj){
-		if(obj instanceof Person){
+	    if(obj == null)
+	        return false;
+		if(obj != null && obj.getClass() == Person.class){
 			Person c =  (Person)obj;
 			if(c.firstName == this.firstName 
-					&& c.lastName == this.lastName)
-				return true;
+					&& c.lastName == this.lastName){
+			    return true;
+			}
+			return false;
 		}
 		return false;
 	}
+	
+	@Override
+	public int hashCode() {
+	    int prime = 31;
+	    int result = 1;
+	    result = prime * result + (firstName == null ? 0 : firstName.hashCode()) + (lastName == null ? 0 : lastName.hashCode());
+	    return result;
+	}
+	
 	
 	public int compareTo(Object obj){
 		return !(obj instanceof Person)? -1 : (this.id -((Person)obj).id);
