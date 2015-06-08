@@ -2,12 +2,12 @@ package com.debuglife.codelabs;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -17,10 +17,24 @@ public class TestClass {
     
     public static void main(String[] args) throws Exception{
         //testClass();
-        testClassLoader();
+        //testClassLoader();
+        printFromTextFile();
     }
     
     public TestClass(){
+    }
+    
+    public static void printFromTextFile() throws Exception{
+        copy(TestClass.class.getResourceAsStream("banner.txt"), System.out);
+    }
+    
+    public static void copy(InputStream in, OutputStream out) throws Exception{
+        byte[] buffer = new byte[1024];
+        int len = in.read(buffer);
+        while(len != -1){
+            out.write(buffer,0,len);
+            len = in.read(buffer);
+        }
     }
     
     public static void testClassAsParameter() throws Exception{
