@@ -153,6 +153,25 @@
 			<artifactId>JConnect</artifactId>
 			<version>6.0.5.26023</version>
 		</dependency>
+		
+		<!-- Camel dependency -->
+		<dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-ftp</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+
+        <!-- logging -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
 	</dependencies>
 
 	 <build>
