@@ -33,7 +33,7 @@ public class CompileClassLoaderTest extends ClassLoader {
 	//override the findClass(...) method in Parent ClassLoader
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
-		Class clazz = null;
+		Class<?> clazz = null;
 		String fileStub = name.replace(".", "/");
 		String javaFileName = fileStub + ".java";
 		String classFileName = fileStub + ".class";
