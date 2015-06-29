@@ -16,7 +16,13 @@
  */
 package com.debuglife.codelabs.camel.ftp;
 
+import org.apache.camel.Exchange;
+import org.apache.camel.Message;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.file.GenericFile;
+import org.apache.camel.component.file.GenericFileFilter;
+import org.apache.camel.component.file.remote.RemoteFile;
 import org.apache.camel.component.properties.PropertiesComponent;
 
 /**
@@ -33,16 +39,44 @@ public class MyFtpServerRouteBuilder extends RouteBuilder {
         // lets shutdown faster in case of in-flight messages stack up
         getContext().getShutdownStrategy().setTimeout(10);
 
-        from("{{ftp.server}}")
+        FileProcessor fp = new FileProcessor();
+        from("{{sftp.server}}")
+            .process(fp)
             .to("file:target/download")
-            .log("Downloaded file ${file:name} complete.");
+            .log("Downloaded file ${file:name} ${file:name.ext} ${file:path} ${file:length} ${file:modified} complete.");
 
         // use system out so it stand out
-        System.out.println("*********************************************************************************");
-        System.out.println("Camel will route files from the FTP server: "
-                + getContext().resolvePropertyPlaceholders("{{ftp.server}}") + " to the target/download directory.");
-        System.out.println("You can configure the location of the ftp server in the src/main/resources/ftp.properties file.");
-        System.out.println("Use ctrl + c to stop this application.");
-        System.out.println("*********************************************************************************");
+//        System.out.println("*********************************************************************************");
+//        System.out.println("Camel will route files from the FTP server: "
+//                + getContext().resolvePropertyPlaceholders("{{sftp.server}}") + " to the target/download directory.");
+//        System.out.println("You can configure the location of the ftp server in the src/main/resources/ftp.properties file.");
+//        System.out.println("Use ctrl + c to stop this application.");
+//        System.out.println("*********************************************************************************");
     }
+}
+
+class FileProcessor implements Processor{
+    @SuppressWarnings("rawtypes")
+    @Override
+    public void process(Exchange exchange) throws Exception {
+        Message msg = exchange.getIn();
+        Object body = msg.getBody();
+        RemoteFile f = (RemoteFile)body;
+        System.out.println("centent of message： " + body);
+        System.out.println("content of files: " + f.getBody());
+    }
+}
+
+class FileFilter<T> implements GenericFileFilter<T>{
+
+    @Override
+    public boolean accept(GenericFile<T> file) {
+        // we want all directoies
+        if(file.isDirectory()){
+            return true;
+        }
+        // we don't accept any files ending with xml in the name
+        return !file.getFileName().endsWith(".xml");
+    }
+    
 }
