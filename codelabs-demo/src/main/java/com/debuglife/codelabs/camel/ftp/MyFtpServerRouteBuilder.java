@@ -62,8 +62,8 @@ class FileProcessor implements Processor{
         Message msg = exchange.getIn();
         Object body = msg.getBody();
         RemoteFile f = (RemoteFile)body;
-        System.out.println("centent of message： " + body);
-        System.out.println("content of files: " + f.getBody());
+//        System.out.println("centent of message： " + body);
+//        System.out.println("content of files: " + f.getBody());
     }
 }
 
