@@ -25,7 +25,7 @@ class MyRouteBuilder1 extends RouteBuilder{
     public void configure() throws Exception {
         // workflow - 1
         from("file:///C:/data/netty/inbox?noop=true")
-            .convertBodyTo(ByteBuf.class)
+            .convertBodyTo(String.class)
             .process(new Processor(){
                 @Override
                 public void process(Exchange exchange) throws Exception {
@@ -34,25 +34,12 @@ class MyRouteBuilder1 extends RouteBuilder{
                     for(Entry<String, Object> entry : headers.entrySet()){
                         System.out.println(entry.getKey() + ":" + headers.get(entry.getKey()));
                     }
-//                    Object body = exchange.getIn().getBody();
-//                    GenericFile<File> f = (GenericFile<File>)body;
-//                    try(FileInputStream fis = new FileInputStream(f.getFile())){
-//                        byte[] buffer = new byte[1024];
-//                        StringBuilder sb = new StringBuilder();
-//                        while(fis.read(buffer) != -1){
-//                            sb.append(new String(buffer));
-//                        }
-//                        System.out.println("after from (file:///)" + sb.toString());
-//                        exchange.getIn().setBody(sb.toString() + " I have saw.");
-//                    } catch(Exception ex){
-//                        ex.printStackTrace();
-//                    }
                 }
             })
-            .to("netty4:tcp://localhost:9999/");
+            .to("netty4:tcp://localhost:9999?clientMode=true");
         
         // workflow - 2
-        from("netty4:tcp://localhost:9999/")
+        from("netty4:tcp://localhost:9999")
             .process(new Processor(){
                 @Override
                 public synchronized void  process(Exchange exchange) throws Exception {
