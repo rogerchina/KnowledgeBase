@@ -23,6 +23,7 @@
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
   <!-- lets configure the default ActiveMQ broker URL -->
+  <!-- 
   <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
     <property name="connectionFactory">
       <bean class="org.apache.activemq.ActiveMQConnectionFactory">
@@ -40,5 +41,5 @@
   		<process ref="downloadLogger"/>
   		<to uri="jms:incomingOrders"/>
   	</route>
-  </camelContext>
+  </camelContext> -->
 </beans>
