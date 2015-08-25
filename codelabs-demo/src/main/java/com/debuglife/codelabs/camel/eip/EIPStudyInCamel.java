@@ -29,7 +29,7 @@ public class EIPStudyInCamel {
                      .end();
                 
                 //:Message Filter EIP
-                from("direct:start")
+                from("direct:start").threads(10)
                     .filter().method(MyBean.class, "isGoldCustomer").to("mock:result").end()
                 .to("mock:end");
                 

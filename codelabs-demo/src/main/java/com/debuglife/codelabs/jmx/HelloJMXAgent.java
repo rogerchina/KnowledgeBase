@@ -11,9 +11,9 @@ public class HelloJMXAgent {
         ObjectName helloName = new ObjectName("chenguang:name=HelloWorld");
         server.registerMBean(new HelloJMX(), helloName);
         ObjectName adapterName = new ObjectName("HelloAgent:name=htmladapter,port=8888");
-        HtmlAdapterServer adapterServer = new HtmlAdapterServer();
-        server.registerMBean(adapterServer, adapterName);
-        adapterServer.start();
-        System.out.println("monitoring started...");
+//        HtmlAdapterServer adapterServer = new HtmlAdapterServer();
+//        server.registerMBean(adapterServer, adapterName);
+//        adapterServer.start();
+//        System.out.println("monitoring started...");
     }
 }
