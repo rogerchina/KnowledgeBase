@@ -158,6 +158,9 @@ public class EIPStudyInCamel {
                     .log("received data: ${body}")
                     .to("mock:B");
                 
+                
+                from("seda:A").messageHistory().autoStartup(false).from("seda:B").streamCaching();
+                
             }
         });
         
