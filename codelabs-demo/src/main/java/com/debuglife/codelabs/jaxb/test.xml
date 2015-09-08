@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:classA xmlns:ns2="com.debuglife.codelabs.jaxb">
+    <classAId>11</classAId>
+    <classAName>A1</classAName>
+    <classB>
+        <classBId>22</classBId>
+        <classBName>B2</classBName>
+    </classB>
+</ns2:classA>
