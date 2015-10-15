@@ -190,6 +190,11 @@
 		    <version>2.15.2</version>
 		    <!-- use the same version as your Camel core version -->
 		</dependency>
+	    <dependency>
+		    <groupId>org.apache.camel</groupId>
+		    <artifactId>camel-ejb</artifactId>
+		    <version>2.15.2</version>
+		</dependency>
 		<dependency>
 	      	<groupId>hsqldb</groupId>
 	      	<artifactId>hsqldb</artifactId>
@@ -250,6 +255,23 @@
 			<artifactId>jzlib</artifactId>
 			<version>1.1.3</version>
 		</dependency>
+		
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+            <version>5.10.0</version>
+        </dependency>
+                 <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-camel</artifactId>
+                <version>5.10.0</version>
+            </dependency>
+            
+                        <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-pool</artifactId>
+                <version>5.10.0</version>
+            </dependency>
 		
 <!-- 		<dependency>
 			<groupId>org.usb4java</groupId>

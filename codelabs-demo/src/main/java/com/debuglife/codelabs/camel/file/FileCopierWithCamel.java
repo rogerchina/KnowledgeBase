@@ -18,11 +18,12 @@ public class FileCopierWithCamel {
 //                        .maximumRedeliveries(5)
 //                        .redeliveryDelay(10000)
 //                        .retryAttemptedLogLevel(LoggingLevel.WARN));
+        	from("").routeId("").setAutoStartup("false");
 //                
                 from("file:///C:/data/inbox?noop=true")
-                    .routeId("").noAutoStartup()
+                    .routeId("")//.noAutoStartup()
                     .to("file:///C:/data/outbox?fileExist=Override")/*fileExist=Fail&overruleFile=copy-of-${file:name}*/
-                    .log("copied files ${file:name} ")
+                    .log("copied files ${file:name} ").setAutoStartup("false");
                     //.errorHandler(deadLetterChannel("log：dead?level=ERROR").useOriginalMessage())
                     ;
 //                // output the file content to standard output

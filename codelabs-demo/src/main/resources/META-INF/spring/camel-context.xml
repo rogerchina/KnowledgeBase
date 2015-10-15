@@ -42,5 +42,5 @@
         <to uri="jms:incomingOrders"/>
         <choice/>
     </route>
-</camelContext>
+  </camelContext>
 </beans>
