@@ -1,9 +1,12 @@
 /*
  * The contents of this file are copyright (c) 2015 by medavis GmbH, Karlsruhe, Germany
- 
+ */
 package org.slf4j.impl;
 
+import org.slf4j.ILoggerFactory;
 import org.slf4j.spi.LoggerFactoryBinder;
+
+import com.debuglife.codelabs.log.Log4j2LoggerFactory;
 
 
 public class StaticLoggerBinder implements LoggerFactoryBinder {
@@ -32,4 +35,4 @@ public class StaticLoggerBinder implements LoggerFactoryBinder {
     public String getLoggerFactoryClassStr() {
         return loggerFactoryClassStr;
     }
-}*/
+}
