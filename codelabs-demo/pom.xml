@@ -194,6 +194,12 @@
 		    <version>2.15.2</version>
 		</dependency>
 		<dependency>
+		    <groupId>org.apache.camel</groupId>
+		    <artifactId>camel-hl7</artifactId>
+		    <version>2.15.2</version>
+		</dependency>
+		
+		<dependency>
 	      	<groupId>hsqldb</groupId>
 	      	<artifactId>hsqldb</artifactId>
 	      	<version>1.8.0.7</version>

@@ -33,9 +33,9 @@ public class TestFastCreateAndDeleteFiles {
     private static String fileSize_1k = "D:\\test\\ADT_A01.hl7";
     private static String fileSize_2M = "D:\\test\\MDM_T02_pat_JPG.hl7";
     private static String desFilePath = "D:\\test\\medavis\\service\\gateway4med\\in\\10w\\ADT_A01_";
-    private static String testFilePath = "D:\\test\\manyFiles\\";
+    private static String testFilePath = "D:\\jboss\\jboss-dist-1.0.0.1-SNAPSHOT\\standalone\\data\\g4m\\";//"D:\\test\\manyFiles\\";
     private static int totalNum = 100000;
-    private static int numOfGroup = 4;
+    private static int numOfGroup = 20;
     
     // thread list
     private static List<Thread> threadList = new ArrayList<Thread>();
