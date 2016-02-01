@@ -1,51 +1,52 @@
-
-
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<title>关于浏览器和屏幕的坐标大全(经典中的经典)</title>
-<meta charset="utf-8" />
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<style>
-
-</style>
+	<title>关于浏览器和屏幕的坐标大全(经典中的经典)</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<style></style>
 </head>
-<body onclick="Text()">
-<script type="text/javascript">   
-var strInfo="";
-function Text(){
-strInfo+=window.event.x; //设置或获取鼠标指针位置相对于父文档的 x 像素坐标
-strInfo+="\n"+window.event.y;//设置或获取鼠标指针位置相对于父文档的 y 像素坐标。
-strInfo+="<br>"+window.event.clientX;//设置或获取鼠标指针位置相对于窗口客户区域的 x 坐标，其中客户区域不包括窗口自身的控件和滚动条.
-strInfo+="\n"+window.event.clientY;//设置或获取鼠标指针位置相对于窗口客户区域的 y坐标，其中客户区域不包括窗口自身的控件和滚动条.
-strInfo+="<br>"+window.event.screenX;  //screenX 设置或获取获取鼠标指针位置相对于用户屏幕的 x 坐标。 
-strInfo+="\n"+window.event.screenY;  //screenX 设置或获取获取鼠标指针位置相对于用户屏幕的 y 坐标。 
-strInfo+="<br>"+window.event.offsetX;//offsetX 设置或获取鼠标指针位置相对于触发事件的对象的 x 坐标。
-strInfo+="\n"+window.event.offsetY;//offsetX 设置或获取鼠标指针位置相对于触发事件的对象的 y坐标。
-/*
-event.clientX返回事件发生时,mouse相对于客户窗口的X坐标，event.X也一样。但是如果设置事件对象的定位属性值为relative，event.clientX不变，而
-event.X返回事件对象的相对于本体的坐标。
-*/ 
-strInfo+="<br>"+document.body.scrollWidth;//上下滚动条高度距离屏幕左端的距离
-strInfo+="\n"+document.body.scrollHeight;//屏幕内容距离窗口上端的距离
-strInfo+="<br>"+document.body.scrollTop;//网页被卷去的高
-strInfo+="\n"+document.body.scrollLeft;//网页被卷去的宽
-strInfo+="<br>"+document.body.clientWidth;//网页可见区域的宽度(不会随着鼠标的变化而变化,不包括边框和滚动条);
-strInfo+="\n"+document.body.clientHeight;//网页可见区域的高度(不会随着鼠标的变化而变化,不包括边框和滚动条);
-strInfo+="<br>"+document.body.offsetWidth;//网页可见区域的高度(不会随着鼠标的变化而变化,包括边框和滚动条);
-strInfo+="\n"+document.body.offsetHeight;//网页可见区域的高度(不会随着鼠标的变化而变化,包括边框和滚动条);
-strInfo+="<br>"+window.screenTop;//网页正文部分上 有些浏览器要换成window.screenX
-strInfo+="\n"+window.screenLeft;//网页正文部分左 有些浏览器要换成window.screenY
-strInfo+="<br>"+window.screen.width;//返回屏幕分辨率的宽度
-strInfo+="\n"+window.screen.height;//返回屏幕分辨率的高度
-strInfo+="<br>"+window.screen.availWidth;//返回屏幕可用工作区的像素宽度(不包括工具栏)
-strInfo+="\n"+window.screen.availHeight;//返回屏幕可用工作区的像素的高度(不包括工具栏)
 
+<body>
+	<div id="show"></div>
+	<script type="text/javascript">  
+		function Text(){
+			var showSection = document.getElementById("show");
+			var strInfo="";
+			strInfo+= "window.event.x=" + window.event.x; //设置或获取鼠标指针位置相对于父文档的 x 像素坐标
+			strInfo+="\n window.event.y="+window.event.y;//设置或获取鼠标指针位置相对于父文档的 y 像素坐标。
+			strInfo+="<br> window.event.clientX="+window.event.clientX;//设置或获取鼠标指针位置相对于窗口客户区域的 x 坐标，其中客户区域不包括窗口自身的控件和滚动条.
+			strInfo+="\n window.event.clientY="+window.event.clientY;//设置或获取鼠标指针位置相对于窗口客户区域的 y坐标，其中客户区域不包括窗口自身的控件和滚动条.
+			strInfo+="<br> window.event.screenX="+window.event.screenX;  //screenX 设置或获取获取鼠标指针位置相对于用户屏幕的 x 坐标。 
+			strInfo+="\n window.event.screenY="+window.event.screenY;  //screenX 设置或获取获取鼠标指针位置相对于用户屏幕的 y 坐标。 
+			strInfo+="<br> window.event.offsetX="+window.event.offsetX;//offsetX 设置或获取鼠标指针位置相对于触发事件的对象的 x 坐标。
+			strInfo+="\n window.event.offsetY="+window.event.offsetY;//offsetX 设置或获取鼠标指针位置相对于触发事件的对象的 y坐标。
+			/*
+			event.clientX返回事件发生时,mouse相对于客户窗口的X坐标，event.X也一样。但是如果设置事件对象的定位属性值为relative，event.clientX不变，而
+			event.X返回事件对象的相对于本体的坐标。
+			*/ 
+			strInfo+="<br> document.body.scrollWidth="+document.body.scrollWidth;//上下滚动条高度距离屏幕左端的距离
+			strInfo+="\n document.body.scrollHeight="+document.body.scrollHeight;//屏幕内容距离窗口上端的距离
+			strInfo+="<br> document.body.scrollTop="+document.body.scrollTop;//网页被卷去的高
+			strInfo+="\n document.body.scrollLeft="+document.body.scrollLeft;//网页被卷去的宽
+			strInfo+="<br> document.body.clientWidth="+document.body.clientWidth;//网页可见区域的宽度(不会随着鼠标的变化而变化,不包括边框和滚动条);
+			strInfo+="\n document.body.clientHeight="+document.body.clientHeight;//网页可见区域的高度(不会随着鼠标的变化而变化,不包括边框和滚动条);
+			strInfo+="<br> document.body.offsetWidth="+document.body.offsetWidth;//网页可见区域的高度(不会随着鼠标的变化而变化,包括边框和滚动条);
+			strInfo+="\n document.body.offsetHeight="+document.body.offsetHeight;//网页可见区域的高度(不会随着鼠标的变化而变化,包括边框和滚动条);
+			strInfo+="<br> window.screenTop="+window.screenTop;//网页正文部分上 有些浏览器要换成window.screenX
+			strInfo+="\n window.screenLeft="+window.screenLeft;//网页正文部分左 有些浏览器要换成window.screenY
+			strInfo+="<br> window.screen.width="+window.screen.width;//返回屏幕分辨率的宽度
+			strInfo+="\n window.screen.height="+window.screen.height;//返回屏幕分辨率的高度
+			strInfo+="<br> window.screen.availWidth="+window.screen.availWidth;//返回屏幕可用工作区的像素宽度(不包括工具栏)
+			strInfo+="\n window.screen.availHeight="+window.screen.availHeight;//返回屏幕可用工作区的像素的高度(不包括工具栏)
 
-document.write(strInfo);
-}
-</script>
+			//document.write(strInfo);
+			showSection.innerHTML = strInfo;
+		}
+		//document.onclick = Text;
+		document.onmousemove = Text;
+	</script>
 </body>
 </html>
