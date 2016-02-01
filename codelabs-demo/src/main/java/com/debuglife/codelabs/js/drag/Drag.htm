@@ -158,7 +158,9 @@ Drag.prototype = {
 		this.mxRight = Math.max(this.mxRight, this.mxLeft + this.Drag.offsetWidth);
 		this.mxBottom = Math.max(this.mxBottom, this.mxTop + this.Drag.offsetHeight);
 		//如果有容器必须设置position为relative或absolute来相对或绝对定位，并在获取offset之前设置
-		!this._mxContainer || CurrentStyle(this._mxContainer).position == "relative" || CurrentStyle(this._mxContainer).position == "absolute" || (this._mxContainer.style.position = "relative");
+		!this._mxContainer || CurrentStyle(this._mxContainer).position == "relative" 
+			|| CurrentStyle(this._mxContainer).position == "absolute" 
+			|| (this._mxContainer.style.position = "relative");
 	}
   },
   //拖动
@@ -226,24 +228,25 @@ Drag.prototype = {
 <br />拖放状态：<span id="idShow">未开始</span>
 
 <script>
-var drag = new Drag("idDrag", { mxContainer: "idContainer", Handle: "idHandle", Limit: true,
-	onStart: function(){ $("idShow").innerHTML = "开始拖放"; },
-	onMove: function(){ $("idShow").innerHTML = "left："+this.Drag.offsetLeft+"；top:"+this.Drag.offsetTop; },
-	onStop: function(){ $("idShow").innerHTML = "结束拖放"; }
-});
+	var drag = new Drag("idDrag", { 
+		mxContainer: "idContainer", Handle: "idHandle", Limit: true,
+		onStart: function(){ $("idShow").innerHTML = "开始拖放"; },
+		onMove: function(){ $("idShow").innerHTML = "left："+this.Drag.offsetLeft+"；top:"+this.Drag.offsetTop; },
+		onStop: function(){ $("idShow").innerHTML = "结束拖放"; }
+	});
 
-$("idReset").onclick = function(){
-	drag.Limit = true;
-	drag.mxLeft = drag.mxTop = 0;
-	drag.mxRight = drag.mxBottom = 9999;
-	drag.LockX = drag.LockY = drag.Lock = false;
-}
+	$("idReset").onclick = function(){
+		drag.Limit = true;
+		drag.mxLeft = drag.mxTop = 0;
+		drag.mxRight = drag.mxBottom = 9999;
+		drag.LockX = drag.LockY = drag.Lock = false;
+	}
 
-$("idLock").onclick = function(){ drag.Lock = true; }
-$("idLockX").onclick = function(){ drag.LockX = true; }
-$("idLockY").onclick = function(){ drag.LockY = true; }
-$("idLimit").onclick = function(){	 drag.mxRight = drag.mxBottom = 200;drag.Limit = true; }
-$("idLimitOff").onclick = function(){ drag.Limit = false; }
+	$("idLock").onclick = function(){ drag.Lock = true; }
+	$("idLockX").onclick = function(){ drag.LockX = true; }
+	$("idLockY").onclick = function(){ drag.LockY = true; }
+	$("idLimit").onclick = function(){	 drag.mxRight = drag.mxBottom = 200;drag.Limit = true; }
+	$("idLimitOff").onclick = function(){ drag.Limit = false; }
 </script>
 
 </body>
