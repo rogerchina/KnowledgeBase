@@ -1,4 +1,4 @@
-package com.debuglife.codelabs.camel.jdbc;
+/*package com.debuglife.codelabs.camel.jdbc;
 
 import static org.apache.camel.component.jms.JmsComponent.jmsComponentClientAcknowledge;
 
@@ -96,3 +96,4 @@ public class JdbcTest extends CamelTestSupport{
     }
 
 }
+*/
