@@ -23,10 +23,10 @@ import org.json.JSONException;
 //import org.vaadin.jouni.animator.Disclosure;
 
 
-import com.debuglife.codelabs.components.Broadcaster;
-import com.debuglife.codelabs.components.CompositeComponent1;
-import com.debuglife.codelabs.components.ExampleUtil;
-import com.debuglife.codelabs.components.ParseXml;
+//import com.debuglife.codelabs.components.Broadcaster;
+//import com.debuglife.codelabs.components.CompositeComponent1;
+//import com.debuglife.codelabs.components.ExampleUtil;
+//import com.debuglife.codelabs.components.ParseXml;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
@@ -111,7 +111,7 @@ import com.vaadin.ui.Window;
 // PushMode.MANUAL)
 @SuppressWarnings("serial")
 @Theme("vaadinstudy")
-public class VaadinstudyUI extends UI implements Broadcaster.BroadcastListener {
+public class VaadinstudyUI extends UI {//implements Broadcaster.BroadcastListener {
 
     @WebServlet(value = "/*", asyncSupported = true)
     @VaadinServletConfiguration(productionMode = false, ui = VaadinstudyUI.class)
@@ -358,7 +358,7 @@ public class VaadinstudyUI extends UI implements Broadcaster.BroadcastListener {
 
         // ComboBox
         initLabel("ComboBox");
-        initComboBox();
+//        initComboBox();
 
         // DatePicker
         initLabel("DatePicker");
@@ -404,31 +404,31 @@ public class VaadinstudyUI extends UI implements Broadcaster.BroadcastListener {
         send.addClickListener(new ClickListener(){
             @Override
             public void buttonClick(ClickEvent event) {
-                Broadcaster.broadcast(input.getValue());
+//                Broadcaster.broadcast(input.getValue());
                 input.setValue("");
             }
         });
         innerVlayout.addComponent(send);
-        Broadcaster.register(this);
+//        Broadcaster.register(this);
         
         vlayout.addComponent(innerVlayout);
     }
     
     @Override
     public void detach() {
-        Broadcaster.unregister(this);
+//        Broadcaster.unregister(this);
         super.detach();
     }
 
-    @Override
-    public void receiveBroadcast(final String message) {
-        access(new Runnable(){
-            @Override
-            public void run() {
-                innerVlayout.addComponent(new Label(message));
-            }
-        });
-    }
+//    @Override
+//    public void receiveBroadcast(final String message) {
+//        access(new Runnable(){
+//            @Override
+//            public void run() {
+//                innerVlayout.addComponent(new Label(message));
+//            }
+//        });
+//    }
 
     private void initServerPush() {
         button = new Button();
@@ -538,14 +538,14 @@ public class VaadinstudyUI extends UI implements Broadcaster.BroadcastListener {
 
             @Override
             public void buttonClick(ClickEvent event) {
-                String text = tf.getValue();
-                List<Map<String, String>> list = ParseXml.parseXmlString(text);
-                System.out.println(list);
-                Map<String, String> map = null;
-                for(int i = 0; i < list.size(); i++) {
-                    map = list.get(i);
-                    table.addItem(new Object[] {map.get("title"), map.get("link"), map.get("pubDate")}, new Integer(i));
-                }
+//                String text = tf.getValue();
+//                List<Map<String, String>> list = ParseXml.parseXmlString(text);
+//                System.out.println(list);
+//                Map<String, String> map = null;
+//                for(int i = 0; i < list.size(); i++) {
+//                    map = list.get(i);
+//                    table.addItem(new Object[] {map.get("title"), map.get("link"), map.get("pubDate")}, new Integer(i));
+//                }
             }
         });
 
@@ -719,65 +719,65 @@ public class VaadinstudyUI extends UI implements Broadcaster.BroadcastListener {
     /*
      * Add a ComboBox component
      */
-    @SuppressWarnings("unchecked")
-    private void initComboBox() {
-        // Creates a new combobox using an existing container
-        final ComboBox comboBox = new ComboBox("Select your country", ExampleUtil.getISO3166Container());
-        comboBox.setInputPrompt("No country selected");
-
-        // Sets the combobox to show a certain property as the item caption
-        comboBox.setItemCaptionPropertyId(ExampleUtil.iso3166_PROPERTY_NAME);
-        comboBox.setItemCaptionMode(ItemCaptionMode.PROPERTY);
-
-        // Sets the icon to use with the items
-        comboBox.setItemIconPropertyId(ExampleUtil.iso3166_PROPERTY_FLAG);
-
-        // Set a reasonable width
-        comboBox.setWidth(350.0f, Unit.PIXELS);
-
-        // Set the appropriate filtering mode for this example
-        comboBox.setFilteringMode(FilteringMode.CONTAINS);
-        comboBox.setImmediate(true);
-
-        // Disallow null selections
-        comboBox.setNullSelectionAllowed(false);
-
-        // Check if the caption for new item already exists in the list of item
-        // captions before approving it as a new item.
-        comboBox.setNewItemHandler(new NewItemHandler() {
-
-            @Override
-            public void addNewItem(final String newItemCaption) {
-                boolean newItem = true;
-                for(final Object itemId : comboBox.getItemIds()) {
-                    if(newItemCaption.equalsIgnoreCase(comboBox.getItemCaption(itemId))) {
-                        newItem = false;
-                        break;
-                    }
-                }
-                if(newItem) {
-                    // Adds new option
-                    if(comboBox.addItem(newItemCaption) != null) {
-                        final Item item = comboBox.getItem(newItemCaption);
-                        item.getItemProperty(ExampleUtil.iso3166_PROPERTY_NAME).setValue(newItemCaption);
-                        comboBox.setValue(newItemCaption);
-                    }
-                }
-            }
-        });
-
-        comboBox.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(final ValueChangeEvent event) {
-                final String valueString = String.valueOf(event.getProperty().getValue());
-                Notification.show("Value changed:", valueString, Type.TRAY_NOTIFICATION);
-            }
-        });
-
-        vlayout.addComponent(comboBox);
-        initSpace();
-    }
+//    @SuppressWarnings("unchecked")
+//    private void initComboBox() {
+//        // Creates a new combobox using an existing container
+////        final ComboBox comboBox = new ComboBox("Select your country", ExampleUtil.getISO3166Container());
+////        comboBox.setInputPrompt("No country selected");
+//
+//        // Sets the combobox to show a certain property as the item caption
+//        comboBox.setItemCaptionPropertyId(ExampleUtil.iso3166_PROPERTY_NAME);
+//        comboBox.setItemCaptionMode(ItemCaptionMode.PROPERTY);
+//
+//        // Sets the icon to use with the items
+//        comboBox.setItemIconPropertyId(ExampleUtil.iso3166_PROPERTY_FLAG);
+//
+//        // Set a reasonable width
+//        comboBox.setWidth(350.0f, Unit.PIXELS);
+//
+//        // Set the appropriate filtering mode for this example
+//        comboBox.setFilteringMode(FilteringMode.CONTAINS);
+//        comboBox.setImmediate(true);
+//
+//        // Disallow null selections
+//        comboBox.setNullSelectionAllowed(false);
+//
+//        // Check if the caption for new item already exists in the list of item
+//        // captions before approving it as a new item.
+//        comboBox.setNewItemHandler(new NewItemHandler() {
+//
+//            @Override
+//            public void addNewItem(final String newItemCaption) {
+//                boolean newItem = true;
+//                for(final Object itemId : comboBox.getItemIds()) {
+//                    if(newItemCaption.equalsIgnoreCase(comboBox.getItemCaption(itemId))) {
+//                        newItem = false;
+//                        break;
+//                    }
+//                }
+//                if(newItem) {
+//                    // Adds new option
+//                    if(comboBox.addItem(newItemCaption) != null) {
+//                        final Item item = comboBox.getItem(newItemCaption);
+//                        item.getItemProperty(ExampleUtil.iso3166_PROPERTY_NAME).setValue(newItemCaption);
+//                        comboBox.setValue(newItemCaption);
+//                    }
+//                }
+//            }
+//        });
+//
+//        comboBox.addValueChangeListener(new ValueChangeListener() {
+//
+//            @Override
+//            public void valueChange(final ValueChangeEvent event) {
+//                final String valueString = String.valueOf(event.getProperty().getValue());
+//                Notification.show("Value changed:", valueString, Type.TRAY_NOTIFICATION);
+//            }
+//        });
+//
+//        vlayout.addComponent(comboBox);
+//        initSpace();
+//    }
 
     /*
      * Add a DropDownMenu component
@@ -1481,11 +1481,11 @@ public class VaadinstudyUI extends UI implements Broadcaster.BroadcastListener {
      * Add Composite Component
      */
     private void initCompositeComponent1() {
-        CompositeComponent1 cc1 = new CompositeComponent1("hello");
-
-        vlayout.addComponent(cc1);
-
-        initSpace();
+//        CompositeComponent1 cc1 = new CompositeComponent1("hello");
+//
+//        vlayout.addComponent(cc1);
+//
+//        initSpace();
     }
 
     /** ----------------------------------------------------------------- **/
