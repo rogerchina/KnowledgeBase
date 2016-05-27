@@ -34,19 +34,19 @@ public class TestFastCreateAndDeleteFiles {
     private static String fileSize_2M = "D:\\test\\MDM_T02_pat_JPG.hl7";
     private static String fileSize_less10k = "D:\\workspace\\vaadin-ui\\medavis-medical-viewer\\src\\main\\resources\\de\\medavis\\vaadin\\framework\\ui\\medicalviewer\\demo_images\\IM000031.JPG";
     private static String desFilePath = "D:\\workspace\\vaadin-ui\\medavis-medical-viewer\\src\\main\\resources\\de\\medavis\\vaadin\\framework\\ui\\medicalviewer\\demo_images\\IM0000_";//"D:\\test\\medavis\\service\\gateway4med\\in\\10w\\ADT_A01_";
-    private static String testFilePath = "D:\\jboss\\jboss-dist-1.0.0.1-SNAPSHOT\\standalone\\data\\g4m\\";//"D:\\test\\manyFiles\\";
+    private static String testFilePath = "C:\\Users\\roger.zhang\\.m2\\repository\\";//"D:\\test\\manyFiles\\";
     private static int totalNum = 1000;
-    private static int numOfGroup = 5;
+    private static int numOfGroup = 20;
     
     // thread list
     private static List<Thread> threadList = new ArrayList<Thread>();
 
     public static void main(String[] args) throws Exception{
         //createFiles(fileSize_1k, testFilePath, suffix);
-        createFiles(fileSize_less10k, desFilePath, ".JPG");
+        //createFiles(fileSize_less10k, desFilePath, ".JPG");
         //deleteFiles(desFilePath, suffix);
-        //deleteFilesRecurisively(testFilePath);
-        calExecuteTime();
+        deleteFilesRecurisively(testFilePath);
+        //calExecuteTime();
     }
     
     /**
