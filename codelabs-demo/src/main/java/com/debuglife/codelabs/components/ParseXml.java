@@ -24,9 +24,9 @@ import org.junit.Test;
 
 public class ParseXml {
 	private static URL url = null;
-	private static final String username = "asiapacific.cpqcorp.net\\ZYONGLIA1";
+	private static final String username = "";
 	private static final String password = "";
-	private static final String host = "web-proxy.sgp.hp.com";
+	private static final String host = "";
 	private static final String port = "8080";
 	
 	public ParseXml(){
