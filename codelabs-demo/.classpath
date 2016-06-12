@@ -29,6 +29,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="D:/portal/medavis-jboss-dist-1.1.0.1/modules/system/layers/base/org/apache/log4j/main/log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
