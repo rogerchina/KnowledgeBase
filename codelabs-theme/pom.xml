@@ -14,6 +14,30 @@
 	<name>Codelabs Theme ${project.version}</name>
 	<packaging>jar</packaging>
 
+	<dependencies>
+		<dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client-compiled</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+		    <groupId>com.vaadin</groupId>
+		    <artifactId>vaadin-client-compiler</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-themes</artifactId>
+		</dependency>
+	</dependencies>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -96,27 +120,4 @@
 		</pluginManagement>
 	</build>
 
-	<dependencies>
-		<dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-server</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-client-compiled</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-client</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-		    <groupId>com.vaadin</groupId>
-		    <artifactId>vaadin-client-compiler</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-themes</artifactId>
-		</dependency>
-	</dependencies>
 </project>

@@ -14,6 +14,35 @@
 	<name>Codelabs WebUI ${project.version}</name>
 	<packaging>war</packaging>
 
+	<dependencies>
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-push</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.debuglife</groupId>
+			<artifactId>codelabs-widgetset</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.debuglife</groupId>
+			<artifactId>codelabs-theme</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<resources>
 			<resource>
@@ -146,7 +175,7 @@
 			<!-- we can start up the web application server quickly just through running -->
 			<!-- maven command "jetty:run", and have no need to deploy the war package to -->
 			<!-- a single running server. However, for real production, you should deploy -->
-			<!-- the war/ear package into the single application server. -->
+			<!-- the war/ear package into the single application server all the same. -->
 			
 			<!-- startup web application through maven command - START -->
 			<plugin>
@@ -188,37 +217,7 @@
                 </configuration>
             </plugin>
             <!-- startup web application through maven command - END -->
-            
 		</plugins>
 	</build>
-
-	<dependencies>
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-push</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.debuglife</groupId>
-			<artifactId>codelabs-widgetset</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.debuglife</groupId>
-			<artifactId>codelabs-theme</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-	</dependencies>
 
 </project>
