@@ -1,0 +1,7 @@
+@import "addons.scss";
+@import "codelabs.scss";
+
+.cockpit4med {
+	@include addons;
+	@include codelabs;
+}

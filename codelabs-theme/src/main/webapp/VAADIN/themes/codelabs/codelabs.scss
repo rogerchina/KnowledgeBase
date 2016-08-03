@@ -1,0 +1,222 @@
+@import "../medavis-base/medavis-base";
+
+/* This contains all of your theme.   */
+/* If somebody wants to extend the theme she will include this mixin. */
+@mixin cockpit4med {
+	
+  /* Include all the styles from the medavis-base theme */
+  @include medavis-base;
+  
+  /* Insert your theme rules here */
+  .gadget {
+        .header {
+            min-height:32px !important;
+            background-color:#42637b;
+            cursor: move;
+            
+            .title {
+                color : #ffffff;
+                margin-left: 10px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            .menu {
+                background-color: #42637b;
+			    background-image: none;
+			    border: 0 none;
+			    box-shadow: 0 0;
+			    color: #ffffff;
+			    
+			    &:focus:after {
+	                box-shadow: none;
+	                -webkit-box-shadow: none;
+	            }
+	            
+	            &:focus::after {
+	            	box-shadow: none;
+	            	border: none;
+	            }
+	            
+	            .v-menubar-menuitem {
+	            	border-width: 0;
+	            }
+            }
+        }
+        
+        &.mock {
+        	background: #f5f5f5;
+		    height: 432px;
+		    border: 3px dashed #ccc;
+		    border-radius : 5px;
+		    
+		    .add-link {
+		    	font-size:24px;
+		    }
+        }
+        
+        &.error-place-holder {
+        	background: #fff8c4;
+		    height: 400px;
+		    border: 3px dashed #f2c779;
+		    border-radius : 5px;
+        }
+     
+   }
+   
+   .dashboard, .favorite-dashboards {
+        min-width:1024px;
+        .main-layout {
+        	.v-slot-child-layout + .v-spacing {
+        		height: 8px !important;
+        		width : 8px !important;
+        	}
+        	
+            .child-layout {
+		        .v-ddwrapper {
+			        border-width: 0;
+	        		padding:0;
+	        		
+	        		.v-slot + .v-spacing {
+	        			height: 8px !important;
+        				width : 8px !important;
+	        		}
+	        		
+	        		.v-table-pagedtable {
+	        			overflow-y: scroll;
+	        			height: 375px;
+	        		}
+	        		
+	        		/*for table without paging*/
+	        		.v-table-body-wrapper {
+	        			height: 375px !important;
+	        		}
+
+	        		.v-textfield-pagedtable-pagefield {
+	        			width: 30px !important;
+	        		}
+	        		
+	        		.v-filterselect-pagedtable-itemsperpagecombobox {
+	        			width: 65px !important;
+	        		}
+		        }
+		    }
+        }
+   }
+   
+   .scroll-layout {
+   
+   		.v-absolutelayout-wrapper {
+   			left : 5px !important;
+   			right : 5px !important;	
+   		}
+   }
+   
+   .icon-layout  {
+     .v-spacing {
+         height: 20px;
+         width: 15px;
+     }
+     .v-label {
+         color: #316681;
+     }
+   }
+   .popup-dialog {
+   
+   		.v-window-header {
+   			background: #42637b;
+   			color: #fff;
+   			margin-right: 0;
+   			line-height: 32px;
+   		}
+   		
+   		.v-window-closebox {
+   			background: #42637b;
+   			line-height: 28px;
+   			height: 32px;
+   			
+   		   	&::before {
+		    	color: #fff;
+		    	font-weight: bold;
+   		   	}
+		}
+		
+		.v-panel {
+			border: 0;
+			box-shadow : none;
+		}
+		
+		.show-tooltip {
+			margin-top: 10px;
+		}
+   }
+  
+   .green-button {
+    	padding:0 20px;
+   }
+   
+   .favorite-dashboards {
+   		.v-tabsheet-tabsheetpanel {
+   			background:inherit !important;
+   		}
+   		
+   		.v-tabsheet-content {
+   			border: 0 !important;
+   		}
+   		
+   		.v-tabsheet-tabcontainer::before {
+   			border-top: 0 !important;
+   		}
+   		
+   		.v-slot-child-layout + .v-spacing {
+        		height: 8px !important;
+        		width : 8px !important;
+       	}
+       	
+       	.v-tabsheet-tabcontainer .v-caption {
+       		border-radius : 10px 10px 0 0;
+       		line-height : 32px;
+       		padding: 0 18px;
+       	}
+   }
+   
+   .time-frame {
+     .v-spacing {
+         height: 5px !important;
+         width: 5px !important;
+      }
+      .v-label {
+         color: #316681;
+      }
+    }
+    
+    .date-detail-button-group{
+       width:75%;
+    }
+   
+    .button-group-spacing{
+         .v-spacing {
+           height: 5px;
+           width: 5px;
+         }
+      }
+   
+      .date-button-group, .date-detail-button-group{
+          .v-button{
+          &.button-down, &.button-down:active, &.button-down:hover {
+          background-image: none;
+          background-color: $m-button-pressed-background-gradient-end;
+          box-shadow: none;
+
+          background: $m-button-pressed-background-gradient-end; /* for non-css3 browsers */
+          background: -moz-linear-gradient(top, rgba(110, 110, 110, 0.25) 0%, rgba(255, 255, 255, 1) 3px); /* FF3.6+ */
+          background: -webkit-linear-gradient(top, rgba(110, 110, 110, 0.25) 0%, rgba(255, 255, 255, 1) 3px); /* Chrome10+,Safari5.1+ */
+          background: -ms-linear-gradient(top, rgba(110, 110, 110, 0.25) 0%, rgba(255, 255, 255, 1) 4px); /* IE10+ */
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#40000000', endColorstr='#ffffff', GradientType=0); /* for IE6-9 */
+          }
+       }
+   }
+   
+   
+}
