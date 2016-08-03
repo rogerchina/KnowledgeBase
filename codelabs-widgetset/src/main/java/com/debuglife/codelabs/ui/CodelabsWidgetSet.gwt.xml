@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+    "-//Google Inc.//DTD Google Web Toolkit 2.3.0//EN"
+    "http://google-web-toolkit.googlecode.com/svn/releases/2.3/distro-source/core/src/gwt-module.dtd">
+<module>
+	<!-- Hint for WidgetSetBuilder not to automatically update the file -->
+    <!-- WS Compiler: manually edited -->
+    <inherits name="com.vaadin.DefaultWidgetSet" />
+    
+    <inherits name="org.vaadin.hene.popupbutton.widgetset.PopupbuttonWidgetset" />
+
+    <inherits name="de.medavis.vaadin.framework.ui.suggestionfield.gwt.SuggestionFieldWidgetSet" />
+
+    <inherits name="de.medavis.vaadin.framework.ui.scrolldetector.gwt.ScrollDetectorWidgetSet" />
+
+    <inherits name="com.github.wolfie.refresher.RefresherWidgetset" />
+
+    <inherits name="org.vaadin.tokenfield.TokenfieldWidgetset" />
+
+    <inherits name="org.vaadin.jouni.animator.AnimatorWidgetset" />
+
+    <inherits name="com.porotype.codelabel.CodelabelWidgetset" />
+
+    <inherits name="de.medavis.vaadin.framework.ui.overlay.gwt.OverlayWidgetSet" />
+
+    <inherits name="org.vaadin.alump.scaleimage.gwt.ScaleImageWidgetset" />
+
+    <inherits name="org.vaadin.alump.lazylayouts.LazyLayoutsWidgetSet" />
+
+    <inherits name="org.vaadin.jouni.restrain.RestrainWidgetset" />
+
+    <inherits name="de.medavis.vaadin.widget.idlechecker.WidgetSet" />
+    
+    <inherits name="com.vaadin.addon.charts.Widgetset" />
+
+    <inherits name="com.vaadin.addon.timeline.gwt.TimelineWidgetSet" />
+
+</module>
