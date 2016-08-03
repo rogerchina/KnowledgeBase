@@ -100,7 +100,6 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-themes</artifactId>
-			<version>${vaadin.version}</version>
 		</dependency>
 	</dependencies>
 </project>
