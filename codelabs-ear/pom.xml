@@ -30,6 +30,7 @@
                         </manifestEntries>
                     </archive>
                     <modules>
+                    <!-- 
                         <webModule>
                             <groupId>com.debuglife</groupId>
                             <artifactId>codelabs-demo</artifactId>
@@ -39,6 +40,7 @@
                             <artifactId>codelabs-addon</artifactId>
                             <bundleDir>lib</bundleDir>
                         </jarModule>
+                     -->
                     </modules>
                     <generateApplicationXml>false</generateApplicationXml>
                     <version>6</version>
@@ -86,12 +88,14 @@
     </build>
 
     <dependencies>
+    <!-- 
        <dependency>
             <groupId>com.debuglife</groupId>
             <artifactId>codelabs-demo</artifactId>
             <version>${project.version}</version>
             <type>war</type>
         </dependency>
+         -->
 	</dependencies>
 	
 </project>

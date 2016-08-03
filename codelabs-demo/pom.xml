@@ -247,24 +247,22 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
-
+<!-- 
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>2.4.1</version>
                 <configuration>
                     <filesets>
                         <fileset>
-                            <!-- Clean-up widgetset required for "inplace" compilation -->
                             <directory>${basedir}/src/main/webapp/VAADIN/widgetsets</directory>
                         </fileset>
                         <fileset>
-                            <!-- Clean-up gwt cache -->
                             <directory>${basedir}/src/main/webapp/VAADIN/gwt-unitCache</directory>
                         </fileset>
                     </filesets>
                 </configuration>
             </plugin>
-<!-- 
+
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.3</version>
@@ -283,7 +281,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
- -->
+
 
             <plugin>
                 <groupId>com.vaadin</groupId>
@@ -300,10 +298,8 @@
                     <runTarget>http://localhost:8080/</runTarget>
                 </configuration>
                 <executions>
-                    <!-- You are free to mark this as permanently ignored in Eclipse -->
                     <execution>
                         <configuration>
-                            <!-- if you don't specify any modules, the plugin will find them -->
                         </configuration>
                         <goals>
                             <goal>resources</goal>
@@ -324,6 +320,7 @@
                     </webApp>
                 </configuration>
             </plugin>
+ -->
 
         </plugins>
 

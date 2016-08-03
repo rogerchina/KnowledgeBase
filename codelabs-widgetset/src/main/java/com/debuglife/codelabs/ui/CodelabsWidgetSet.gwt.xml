@@ -7,6 +7,7 @@
     <!-- WS Compiler: manually edited -->
     <inherits name="com.vaadin.DefaultWidgetSet" />
     
+    <!-- 
     <inherits name="org.vaadin.hene.popupbutton.widgetset.PopupbuttonWidgetset" />
 
     <inherits name="com.github.wolfie.refresher.RefresherWidgetset" />
@@ -26,5 +27,6 @@
     <inherits name="com.vaadin.addon.charts.Widgetset" />
 
     <inherits name="com.vaadin.addon.timeline.gwt.TimelineWidgetSet" />
-
+	 -->
+	
 </module>
