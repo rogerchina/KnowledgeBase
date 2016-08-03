@@ -1,7 +1,0 @@
-@import "addons.scss";
-@import "cockpit4med.scss";
-
-.cockpit4med {
-	@include addons;
-	@include cockpit4med;
-}
