@@ -29,6 +29,7 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-client-compiler</artifactId>
         </dependency>
+        <!-- 
         <dependency>
             <groupId>org.vaadin.addons</groupId>
             <artifactId>refresher</artifactId>
@@ -74,6 +75,7 @@
             <artifactId>vaadin-charts</artifactId>
             <version>2.0.0</version>
         </dependency>
+         -->
     </dependencies>
   
     <build>
