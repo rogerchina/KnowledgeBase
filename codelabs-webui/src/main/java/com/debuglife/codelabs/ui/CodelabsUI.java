@@ -2,13 +2,13 @@ package com.debuglife.codelabs.ui;
 
 import javax.servlet.annotation.WebServlet;
 
+import com.debuglife.codelabs.ui.main.MainPage;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -29,13 +29,11 @@ public class CodelabsUI extends UI {
     @Override
     protected void init(final VaadinRequest request) {
         try {
-            Page.getCurrent().setTitle("BaiduChart");
-            vlayout.setStyleName("demoContentLayout");
-            vlayout.setMargin(true); 
-            vlayout.setSpacing(true);
+            Page.getCurrent().setTitle("Codelabs");
             
-            Label label = new Label("Hello Demo! When you see the information, that means the system is running successfully.");
-            vlayout.addComponent(label);
+            MainPage mainPage = new MainPage();
+            mainPage.initLayout();
+            vlayout.addComponent(mainPage);
             
             setContent(vlayout);
         } catch(Exception ex) {
