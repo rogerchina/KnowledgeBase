@@ -19,8 +19,6 @@ public class TestDeadLock implements Runnable{
 					System.out.println("1");
 				}
 			}
-			
-
 		}
 		if(flag == 0){
 			synchronized(o2){
@@ -34,8 +32,6 @@ public class TestDeadLock implements Runnable{
 					System.out.println("2");
 				}
 			}
-			
-
 		}
 	}
 	

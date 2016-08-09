@@ -20,23 +20,23 @@ public class TestThreadLocal implements Runnable{
 	}
 	
 	private void accessStudent(){
-		String currentThreadName = Thread.currentThread().getName();
-        System.out.println(currentThreadName + " is running!");
-        //generate a random number
-        Random random = new Random();
-        int age = random.nextInt(100);
-        System.out.println("thread " + currentThreadName + " set age to:" + age);
-        //get a Student object and set age's value
-        Student student = getStudent();
-        student.setAge(age);
-        System.out.println("thread " + currentThreadName + " first read age is:" + student.getAge());
-        try {
-            Thread.sleep(5000);
-        }
-        catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
-        System.out.println("thread " + currentThreadName + " second read age is:" + student.getAge());
+	    String currentThreadName = Thread.currentThread().getName();
+            System.out.println(currentThreadName + " is running!");
+            //generate a random number
+            Random random = new Random();
+            int age = random.nextInt(100);
+            System.out.println("thread " + currentThreadName + " set age to:" + age);
+            //get a Student object and set age's value
+            Student student = getStudent();
+            student.setAge(age);
+            System.out.println("thread " + currentThreadName + " first read age is:" + student.getAge());
+            try {
+                Thread.sleep(5000);
+            }
+            catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            System.out.println("thread " + currentThreadName + " second read age is:" + student.getAge());
 	}
 	
 	private Student getStudent(){
