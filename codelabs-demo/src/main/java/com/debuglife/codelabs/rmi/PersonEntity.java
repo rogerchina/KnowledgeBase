@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 
 public class PersonEntity implements Serializable{
+    private static final long serialVersionUID = -5938610985861106947L;
+    
     private int id;
     private String name;
     private int age;
