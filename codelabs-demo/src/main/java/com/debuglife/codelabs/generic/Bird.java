@@ -9,4 +9,12 @@ public abstract class Bird<T extends BirdSetting> {
     private String name;
     
     public abstract void fly(); 
+    
+    public T getSetting() {
+	return setting;
+    }
+    
+    public String getName() {
+	return name;
+    }
 }

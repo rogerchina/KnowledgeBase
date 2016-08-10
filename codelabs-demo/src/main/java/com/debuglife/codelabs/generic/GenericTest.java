@@ -3,8 +3,8 @@
  */
 package com.debuglife.codelabs.generic;
 
-
-public abstract class BirdSetting {
-    public abstract void showSettingName();
-    
+public class GenericTest {
+    public static void main(String[] args) {
+	
+    }
 }

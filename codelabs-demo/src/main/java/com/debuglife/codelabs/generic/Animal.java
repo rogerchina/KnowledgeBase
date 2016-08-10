@@ -3,15 +3,22 @@
  */
 package com.debuglife.codelabs.generic;
 
-
-public class Animal<T extends Bird> {
-    private Bird bird;
+/**
+ * higher level abstraction.
+ * The type of animal is restricted to the type or subclass of Bird.
+ * So as Bird's setting.
+ * 
+ * @param <T>
+ */
+	
+public class Animal<T extends Bird< ? extends BirdSetting>> {
+    private Bird<BirdSetting> bird;
     
-    public Animal(Bird bird){
+    public Animal(Bird<BirdSetting> bird){
         this.bird = bird;
     }
     
-    public void fly(){
-        bird.fly();
+    public void showName() {
+	System.out.println(bird.getName());
     }
 }

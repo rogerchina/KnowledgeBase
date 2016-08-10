@@ -4,7 +4,7 @@
 package com.debuglife.codelabs.generic;
 
 
-public class WaterBird<T extends BirdSetting> extends Bird{
+public class WaterBird extends Bird<WaterBirdSetting> {
     
     public void fly(){
         
