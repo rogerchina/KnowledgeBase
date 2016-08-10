@@ -32,6 +32,7 @@ public class CodelabsUI extends UI {
             Page.getCurrent().setTitle("Codelabs");
             
             MainPage mainPage = new MainPage();
+            vlayout.setStyleName("demoContentLayout");
             mainPage.initLayout();
             vlayout.addComponent(mainPage);
             
