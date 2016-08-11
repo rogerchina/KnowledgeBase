@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ActionListenerFor {
-	Class<? extends ActionListener> listener();
+    Class<? extends ActionListener> listener();
 }

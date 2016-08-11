@@ -10,6 +10,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Documented
 public @interface Property {
-	String column();
-	String type();
+    String column();
+
+    String type();
 }

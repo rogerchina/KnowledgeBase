@@ -10,7 +10,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Documented
 public @interface Id {
-	String column();
-	String type();
-	String generator();
+    String column();
+
+    String type();
+
+    String generator();
 }
