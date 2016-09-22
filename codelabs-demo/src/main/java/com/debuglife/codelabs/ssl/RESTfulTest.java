@@ -16,6 +16,9 @@ import java.util.Map.Entry;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.Response;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
@@ -37,21 +40,53 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 public class RESTfulTest {
 
     public static void main(String[] args) throws Exception {
-	String url = "https://localhost:8443/p4m/rest/testpatient";
-	String body = send(url, null, "utf-8");
-	System.out.println("body's length：" + body.length());
-	System.out.println("body：" + body);
-	System.out.println("-----------------------------------");
-	url = "https://kyfw.12306.cn/otn/";
-	body = send(url, null, "utf-8");
-	System.out.println("body's length：" + body.length());
-	System.out.println("body：" + body);
+//	String url = "https://localhost:8443/p4m/rest/testpatient";
+//	String body = send(url, null, "utf-8");
+//	System.out.println("body's length：" + body.length());
+//	System.out.println("body：" + body);
+//	System.out.println("-----------------------------------");
+//	url = "https://kyfw.12306.cn/otn/";
+//	body = send(url, null, "utf-8");
+//	System.out.println("body's length：" + body.length());
+//	System.out.println("body：" + body);
 
-	// ssl();
+	//ssl();
+	
+	accessRESTfulServiceByRestEasy();
+    }
+    
+    public static void accessRESTfulServiceByRestEasy() {
+	try {
+	    KeyStore keyStore = KeyStore.getInstance("JKS");
+	    String keyStorePassword = "changeit";
+	    // use portecle that is gui keytool to generate KeyStore file.
+	    FileInputStream fis = new FileInputStream(new File("C:\\Users\\roger.zhang\\Desktop\\coc.client.trustStore.jks"));
+	    keyStore.load(fis, keyStorePassword.toCharArray());
+
+	    SSLContext sc = SSLContexts.custom().loadTrustMaterial(keyStore, new TrustSelfSignedStrategy()).build();
+	    
+	    ResteasyClient client = new ResteasyClientBuilder().sslContext(sc).build();
+
+	    ResteasyWebTarget target = client.target("https://localhost:8443/p4m/rest/testpatient");
+
+	    String username = "medavisadmin";
+	    String password = "PeterPan";
+	    String authorization = "Basic " + Base64.encodeBase64String((username + ":" + password).getBytes());
+
+	    Response response = target.request().header(HttpHeaders.AUTHORIZATION, authorization).get();
+
+	    System.out.println(response.getStatus());
+	    System.out.println(response.readEntity(new GenericType<String>(){}));
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
     }
 
     public static CloseableHttpClient createSSLClientDefault() {
@@ -60,7 +95,7 @@ public class RESTfulTest {
 	    char[] password = "changeit".toCharArray();
 
 	    java.io.FileInputStream fis = null;
-	    fis = new java.io.FileInputStream(new File("C:\\Users\\roger.zhang\\Desktop\\coc.client.jks"));
+	    fis = new java.io.FileInputStream(new File("C:\\Users\\roger.zhang\\Desktop\\coc.client.trustStore.jks"));
 	    ks.load(fis, password);
 
 	    SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(

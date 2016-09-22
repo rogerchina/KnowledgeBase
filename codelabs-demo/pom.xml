@@ -97,6 +97,26 @@
 		    <artifactId>httpcore</artifactId>
 		    <version>4.4.5</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.17.Final</version>
+			<!-- 
+			<exclusions>
+				<exclusion>
+					  <groupId>org.jboss.spec.javax.ws.rs</groupId>
+					  <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+				</exclusion>
+			</exclusions>
+			 -->
+		</dependency>
+		<!-- -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<version>3.0.17.Final</version>
+		</dependency> 
 	</dependencies>
 
 	 <build>
