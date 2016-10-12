@@ -21,7 +21,7 @@ public class TestSync implements Runnable{
 class Timer{
 	private static int num = 0;
 	
-	public void addTimer(String name){
+	public /*synchronized*/void addTimer(String name){
 		num ++;
 		try{
 			Thread.sleep(1000);
