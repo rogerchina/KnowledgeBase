@@ -10,8 +10,7 @@ import javax.annotation.concurrent.ThreadSafe;
 public class TestCollections {
 
 	public static void main(String[] args) {
-		List<String> list = Collections
-				.synchronizedList(new ArrayList<String>());
+
 	}
 
 }
