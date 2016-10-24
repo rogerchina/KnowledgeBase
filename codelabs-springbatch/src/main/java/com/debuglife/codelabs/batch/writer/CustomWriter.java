@@ -9,11 +9,6 @@ import com.debuglife.codelabs.batch.data.LineVo;
 
 /**
  * <b>输出</b><br>
- * @author		Gaylen
- * @version		V1.1.0
- * history
- * 1.1.0, 2014年11月24日		Gaylen			FE
- * @since		Java 6.0
  */
 public class CustomWriter implements ItemWriter<LineVo> {
 
