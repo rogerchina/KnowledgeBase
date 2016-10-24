@@ -117,6 +117,7 @@
 			<artifactId>resteasy-client</artifactId>
 			<version>3.0.17.Final</version>
 		</dependency> 
+	
 	</dependencies>
 
 	 <build>
