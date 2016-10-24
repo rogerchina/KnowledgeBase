@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:batch="http://www.springframework.org/schema/batch"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://www.springframework.org/schema/beans  
-			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
-			http://www.springframework.org/schema/batch   
-			http://www.springframework.org/schema/batch/spring-batch-2.2.xsd"
-	default-autowire="byName">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:batch="http://www.springframework.org/schema/batch"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+						   http://www.springframework.org/schema/batch
+						   http://www.springframework.org/schema/batch/spring-batch-2.2.xsd"
+						   default-autowire="byName">
 
 	<!-- Spring Batch  内存模型 -->
 	<bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean" />
@@ -14,7 +13,6 @@
 		<property name="jobRepository" ref="jobRepository" />
 	</bean>
 	<bean id="taskExecutor" class="org.springframework.core.task.SyncTaskExecutor" />
-
 
 	<!-- 文本行与逻辑对象映射处理 -->
 	<bean id="customerLineMapper" class="com.debuglife.codelabs.batch.mapper.CustomLineMapper"/>
@@ -39,7 +37,6 @@
 
 	<bean id="customJobListener" class="com.debuglife.codelabs.batch.listener.CustomJobListener"/>
 	<bean id="customStepListener" class="com.debuglife.codelabs.batch.listener.CustomStepListener"/>
-
 
 	<batch:job id="customJob">
 		<batch:step id="customJob_first_step">
