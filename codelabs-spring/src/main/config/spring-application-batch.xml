@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:batch="http://www.springframework.org/schema/batch"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+						   http://www.springframework.org/schema/batch
+						   http://www.springframework.org/schema/batch/spring-batch-2.2.xsd"
+						   default-autowire="byName">
+
+	<!-- Spring Batch  内存模型 -->
+	<bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean" />
+	<bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
+	<bean id="taskExecutor" class="org.springframework.core.task.SyncTaskExecutor" />
+
+	<!-- 文本行与逻辑对象映射处理 -->
+	<bean id="customerLineMapper" class="com.debuglife.codelabs.batch.mapper.CustomLineMapper"/>
+	<bean id="lineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
+		<property name="delimiter" value=" "/>
+	</bean>
+
+	<!-- Scope = step 变量后绑定固定写法，即可以在对象调用时绑定变量 -->
+	<bean id="customReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer" ref="lineTokenizer"/>
+				<property name="fieldSetMapper" ref="customerLineMapper"/>
+			</bean>	   
+		</property>
+		<!-- 此处使用单一文件绝对路径 -->
+		<property name="resource" value="file:#{jobParameters['customFileAbPath']}"/>
+	</bean>
+
+	<bean id="customProcessor" class="com.debuglife.codelabs.batch.processor.CustomProcessor"/>
+	<bean id="customWriter" class="com.debuglife.codelabs.batch.writer.CustomWriter"/>
+
+	<bean id="customJobListener" class="com.debuglife.codelabs.batch.listener.CustomJobListener"/>
+	<bean id="customStepListener" class="com.debuglife.codelabs.batch.listener.CustomStepListener"/>
+
+	<batch:job id="customJob">
+		<batch:step id="customJob_first_step">
+			<batch:tasklet>
+				<batch:chunk reader="customReader" processor="customProcessor" writer="customWriter" commit-interval="100"></batch:chunk>
+				<batch:listeners>
+					<batch:listener ref="customStepListener" />
+				</batch:listeners>
+			</batch:tasklet>
+		</batch:step>
+		<batch:listeners>
+			<batch:listener ref="customJobListener"/>
+		</batch:listeners>
+	</batch:job>
+</beans>

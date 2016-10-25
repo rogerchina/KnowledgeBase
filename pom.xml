@@ -15,6 +15,7 @@
 		<module>codelabs-widgetset</module>
 		<module>codelabs-theme</module>
 		<module>codelabs-demo</module>
+		<module>codelabs-spring</module>
 		<module>codelabs-springbatch</module>
 		<module>codelabs-webui</module>
 		<module>codelabs-ear</module>
