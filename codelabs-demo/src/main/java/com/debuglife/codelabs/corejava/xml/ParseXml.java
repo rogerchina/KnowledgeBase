@@ -1,4 +1,4 @@
-package com.debuglife.codelabs.components;
+package com.debuglife.codelabs.corejava.xml;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
