@@ -28,7 +28,7 @@ public class TestVolatile2 {
 		
 		for(int i=0; i<1000; i++) {
 			//new Thread(() -> Counter.increase()).start();
-			new Thread(() -> RightCounter.inc()).start();
+			//new Thread(() -> RightCounter.inc()).start();
 		}
 		
 		Thread.sleep(2000);
