@@ -1,7 +1,7 @@
 /*
  * The contents of this file are copyright (c) 2016 by medavis GmbH, Karlsruhe, Germany
  */
-package com.debuglife.codelabs.corejava.base64;
+package com.debuglife.codelabs.corejava.security;
 
 import java.io.UnsupportedEncodingException;
 

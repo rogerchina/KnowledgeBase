@@ -1,4 +1,4 @@
-package com.debuglife.codelabs.corejava.process;
+package com.debuglife.codelabs.corejava;
 
 import java.lang.management.ManagementFactory;
 
