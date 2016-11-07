@@ -1,3 +1,9 @@
+Declaration
+============
+Copy from ztree project in order to study javascript language.
+Please go to www.ztree.me for more details.
+
+
 jQuery Tree Plugin ---- zTree  
 ============
 last verson :  3.5.24
