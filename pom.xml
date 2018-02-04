@@ -9,7 +9,6 @@
 	<name>Code Labs Vitural Project For Study ${project.version}</name>
 
 	<modules>
-		<module>codelabs-addon</module>
 		<module>codelabs-widgetset</module>
 		<module>codelabs-theme</module>
 		<module>codelabs-demo</module>
