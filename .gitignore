@@ -17,3 +17,6 @@ Makefile.in
 .settings
 .classpath
 target/
+
+*.iml
+.idea
