@@ -89,14 +89,14 @@ public class BatchServer {
 
 	/**
 	 * <b>批处理执行器</b><br>
-	 * @param joblanuncher
+	 * @param launcher
 	 * @param job
 	 * @param parameters
 	 */
-	public JobExecution executeBatchJob(JobLauncher launcher, Job job, JobParameters jobParameters) {
+	public JobExecution executeBatchJob(JobLauncher launcher, Job job, JobParameters parameters) {
 		JobExecution result = null;
 		try {
-			result = launcher.run(job, jobParameters);
+			result = launcher.run(job, parameters);
 		} catch (JobExecutionAlreadyRunningException e) {
 			e.printStackTrace();
 		} catch (JobRestartException e) {
