@@ -8,11 +8,11 @@ public class WaterBirdSetting extends BirdSetting{
     private String settingName;
     
     public WaterBirdSetting(String settingName) {
-	this.settingName = settingName;
+	    this.settingName = settingName;
     }
     
     @Override
     public void showSettingName() {
-	System.out.println(this.settingName);
+	    System.out.println(this.settingName);
     }
 }

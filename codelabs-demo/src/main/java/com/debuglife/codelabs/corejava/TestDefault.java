@@ -4,10 +4,8 @@ public class TestDefault {
 		
 	}
 	
-//	interface X {
-//		void test();
-//		default void test1() {
-//			
-//		}
-//	}
+	interface X {
+		void test();
+		default void test1() {}
+	}
 }

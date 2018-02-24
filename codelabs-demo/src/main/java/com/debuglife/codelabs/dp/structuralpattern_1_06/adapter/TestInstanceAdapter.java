@@ -1,7 +1,8 @@
 package com.debuglife.codelabs.dp.structuralpattern_1_06.adapter;
 
 /**
- * 基本思路和类的适配器模式相同，只是将Adapter类作修改，这次不继承Source类，而是持有Source类的实例，以达到解决兼容性的问题
+ * 基本思路和类的适配器模式相同，只是将Adapter类作修改，这次不继承Source类，
+ * 而是持有Source类的实例，以达到解决兼容性的问题
  * @author roger.zhang
  *
  */

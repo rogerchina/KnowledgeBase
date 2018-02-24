@@ -4,6 +4,6 @@
 package com.debuglife.codelabs.corejava.jvm;
 
 
-public class jvm {
+public class JVM {
 
 }
