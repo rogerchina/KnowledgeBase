@@ -16,7 +16,7 @@
 		<!-- <module>codelabs-springbatch</module> -->
 		<module>codelabs-webui</module>
 		<module>codelabs-ear</module>
-    <module>codelabs-javascript</module>
+    	<!-- <module>codelabs-javascript</module> -->
   </modules>
 	
 	<properties>
